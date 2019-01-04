@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/myStyle.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/notify.min.js"></script>
+
+<title>Hello, world!</title>
+</head>
+<body>
+	<div class="container">
+		<div class="h-bs">
+			<div class="row">
+				<div class="col">
+					<h2>Библиотека</h2>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="b-bs">
+
+			<div class="row" id="infoDiv">
+				<h3>Рабочий стол</h3>
+			</div>
+
+			<div class="row"></div>
+
+			<div class="row">
+				<div class="col-2">
+					<div class="list-group" id="list-tab" role="tablist">
+						<a class="list-group-item list-group-item-action active"
+							id="list-home-list" data-toggle="list" href="#list-home"
+							role="tab" aria-controls="home">Новая книга</a> <a
+							class="list-group-item list-group-item-action"
+							id="list-profile-list" data-toggle="list" href="#list-profile"
+							role="tab" aria-controls="profile">Хранилище</a> <a
+							class="list-group-item list-group-item-action"
+							id="list-messages-list" data-toggle="list" href="#list-messages"
+							role="tab" aria-controls="messages">Прокат</a> <a
+							class="list-group-item list-group-item-action"
+							id="list-settings-list" data-toggle="list" href="#list-settings"
+							role="tab" aria-controls="settings">Профиль</a>
+					</div>
+				</div>
+				<div class="col">
+					<div class="tab-content" id="nav-tabContent">
+
+						<div class="tab-pane fade show active" id="list-home"
+							role="tabpanel" aria-labelledby="list-home-list">
+
+							<div class="row">
+								<div class="col">
+
+									<form id="add-book-form">
+
+
+										<div class="form-group row">
+											<label for="authorBookID" class="col-sm-2 col-form-label">Автор</label>
+											<div class="col-sm-10">
+												<select name="authorBook" class="form-control">
+													<option>Default select</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="nameBookID" class="col-sm-2 col-form-label">Название</label>
+											<div class="col-sm-10">
+												<input name="nameBook" type="text" class="form-control"
+													placeholder="Название книги" aria-label="NameBook"
+													aria-describedby="basic-addon2">
+											</div>
+										</div>
+
+
+										<div class="form-group row">
+											<label for="descriptionID" class="col-sm-2 col-form-label">Описание</label>
+											<div class="col-sm-10">
+												<textarea name="description" class="form-control" rows="3"></textarea>
+											</div>
+										</div>
+
+
+
+										<button class="btn btn-add float-right" type="button"
+											onclick="handleAddButton(this)">Добавить книгу</button>
+
+
+									</form>
+
+
+
+								</div>
+
+
+
+
+
+
+							</div>
+
+
+
+						</div>
+						<div class="tab-pane fade" id="list-profile" role="tabpanel"
+							aria-labelledby="list-profile-list">
+
+							<div class="col">
+
+
+
+								<div class="form-group row">
+									<label for="sel2" class="col-sm-2 col-form-label">Хранилище
+									</label>
+									<div class="col-sm-10">
+										<select id="sel2" name="sellist2" class="form-control"
+											onchange="changeData(this.value)">
+											<option>Default select</option>
+										</select>
+									</div>
+								</div>
+
+
+
+							</div>
+
+
+							<div class="col" id="infoBook">
+								<table class="table table-striped">
+									<tbody>
+										<tr class="d-flex">
+											<td class="col-2">Название</td>
+											<td class="col-10" id="infoNameBook">...</td>
+										</tr>
+										<tr class="d-flex">
+											<td class="col-2">Жанр</td>
+											<td class="col-10" id="infoGenreBook">...</td>
+										</tr>
+										<tr class="d-flex">
+											<td class="col-2">Описание</td>
+											<td class="col-10" id="infoDescriptionBook">...</td>
+										</tr>
+										<tr class="d-flex">
+											<td class="col-2">Статус</td>
+											<td class="col-10" id="infoAvailabilityBook">...</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+				<div class="tab-pane fade" id="list-messages" role="tabpanel"
+					aria-labelledby="list-messages-list">...</div>
+				<div class="tab-pane fade" id="list-settings" role="tabpanel"
+					aria-labelledby="list-settings-list">...</div>
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+
+
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	var baseURL = "http://localhost:8080/myLibrary";
+	var indx =0;
+	var $listBoks = $('#sel2');
+
+	var books = new Map();
+
+	$(document).ready(function() {
+		loadBooksStore(); 
+	});
+
+
+	function loadBooksStore() {
+		$.ajax({
+            url: "service/main/books",
+            type: "get",
+            success: function(data) {
+
+
+            	$.each(data.libraryBooks, function(i, item) {
+                	
+            		var id = item.id || "";
+            		indx=id;
+                    var title = item.title != null ? item.title  : "";            
+                	var rowStr = generateBoksList(id, title);
+                	$listBoks.append(rowStr);	
+            		books.set(id, item);
+            		
+            		
+				});
+
+      
+
+            
+
+        	}
+		});
+	};
+
+	
+	
+
+	  function addClothes(nameBook) {
+		  indx=indx+1;
+		  var rowStr = generateBoksList(indx,nameBook);
+		  $listBoks.append(rowStr);
+	     
+	    }
+
+
+	
+
+
+	    
+	  function changeData(id) {
+		  var book = books.get(parseInt(id)) || null; 
+		//  $.notify("Одежда удалена (id: " + book.title+ ")", "success");
+		
+		var titleBook =   book.title != null ? book.title : ""; 
+		var titleGenre =  book.genre != null ? book.genre.title  : ""; 
+		var description = book.description != null ? book.description  : ""; 
+		var availability = book.availability == true ? "В наличии": "Отсутствует";
+		
+		  $('#infoNameBook').text(titleBook);
+		  $('#infoGenreBook').text(titleGenre);
+		  $('#infoDescriptionBook').text(description);
+		  $('#infoAvailabilityBook').text(availability);
+
+ 
+	  $.notify("Одежда удалена (id: " + id + ")", "success");
+	  }
+	  function handleAddButton(el) {
+		  var addBookForm = $("#add-book-form");
+	        var nameBook = addBookForm.find('input[name=nameBook]').val();
+	          addClothes(nameBook);     
+	    }
+
+
+	  function generateBoksList(inId, title) {
+	    	var html = [];  	        
+	    	html.push(
+	    			 '<option ' + ' value="' + inId + '">' + title + '</option>'
+	   			);
+	        return html.join("");
+	    }
+
+
+	 
+	</script>
+</html>
+
