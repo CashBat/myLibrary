@@ -1,8 +1,8 @@
-package rep;
+package myLibrary.reposit;
 
 import java.util.Collection;
 
-import myLibrary.Genre;
+import myLibrary.model.Genre;
 
 public interface GenreRepository {
 
@@ -12,9 +12,11 @@ public interface GenreRepository {
 
 	public void edit(Genre item);
 
-	public void delite(Genre item);
+	public void delite(int id);
 	
 	public Genre getGenre(int id);
+	
+	public int  getID();
 	
 	public Collection<Genre> query(GenreSpecification specification);
 	

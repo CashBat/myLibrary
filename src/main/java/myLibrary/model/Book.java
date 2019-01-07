@@ -1,13 +1,20 @@
-package myLibrary;
+package myLibrary.model;
 
-
-
-public class LibraryBook extends MemoryItem {
+public class Book  {
 	
+	
+	private int id;
 	private String title;
 	private Genre  genre;
 	private String description;
 	private boolean availability;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -52,7 +59,7 @@ public class LibraryBook extends MemoryItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LibraryBook other = (LibraryBook) obj;
+		Book other = (Book) obj;
 		if (availability != other.availability)
 			return false;
 		if (description == null) {

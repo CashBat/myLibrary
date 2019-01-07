@@ -1,19 +1,26 @@
-package myLibrary;
+package myLibrary.model;
 
-
-
-
-public class Genre extends MemoryItem{
-		
+public class Genre {
+	
+	private int id;
 	private String title;
 
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -22,6 +29,7 @@ public class Genre extends MemoryItem{
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -40,7 +48,5 @@ public class Genre extends MemoryItem{
 			return false;
 		return true;
 	}
-	
-	
 
 }
