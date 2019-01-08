@@ -1,4 +1,4 @@
-package myLibrary.reposit;
+package myLibrary.reposit.interfaces;
 
 import java.util.Collection;
 

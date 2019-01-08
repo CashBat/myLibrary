@@ -24,4 +24,9 @@ public class RestServiceLibrary {
 		return Response.ok(serviceGenre.getAllGenres()).build();
 	}
 
+	@GET
+	@Path(value = "/books")
+	public Response getAllBooks() {
+		return Response.ok(serviceGenre.getAllBooks()).build();
+	}
 }

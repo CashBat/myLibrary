@@ -1,10 +1,10 @@
-package myLibrary.reposit;
+package myLibrary.reposit.interfaces;
 
 import java.util.Collection;
 
 import myLibrary.model.Genre;
 
-public interface GenreRepository {
+public interface BookRepository {
 
 	public Collection<Genre> values();
 
@@ -19,8 +19,5 @@ public interface GenreRepository {
 	public int  getID();
 	
 	public Collection<Genre> query(GenreSpecification specification);
-	
-
-
 	
 }
