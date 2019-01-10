@@ -1,8 +1,5 @@
 package myLibrary.model;
 
-import java.util.Date;
-import java.util.List;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +9,5 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class ReaderTicket extends AbstractLibraryEntity {
 	private Reader reader;
-	private List<RecordReaderTicket> records; 
-	
 
 }

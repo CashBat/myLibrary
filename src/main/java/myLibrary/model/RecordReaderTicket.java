@@ -1,7 +1,6 @@
 package myLibrary.model;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,5 +15,6 @@ public class RecordReaderTicket extends AbstractLibraryEntity {
 	private Date dateIssue;
 	private int quantityRentDay;
 	private Date returnDate;
+	private ReaderTicket readerTicket; 
 
 }

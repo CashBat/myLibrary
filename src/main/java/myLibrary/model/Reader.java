@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @EqualsAndHashCode(callSuper = false)
 public class Reader extends AbstractLibraryEntity {
-	private String FIO;
+	private String fio;
+	private String tel;
 
 }
