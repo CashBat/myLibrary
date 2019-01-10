@@ -2,6 +2,7 @@ package myLibrary.reposit.impl;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+
 import myLibrary.model.Genre;
 import myLibrary.model.Reader;
 import myLibrary.reposit.abs.AbstractHashMapLibraryRepository;
