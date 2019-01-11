@@ -31,7 +31,7 @@ public abstract class AbstractHashMapLibraryRepository<T extends LibraryEntity> 
 		geners.remove(id);
 	}
 
-	public T getEntity(int id) {
+	public  T getEntity(int id) {
 		return geners.get(id);
 	}
 

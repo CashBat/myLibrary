@@ -215,13 +215,17 @@
             		books.set(id, item);
             		
             		
-				});
+				});       
 
-      
-
-            
-
-        	}
+        	},
+        	error: function(XMLHttpRequest, textStatus, errorThrown) {
+        		alert(XMLHttpRequest.status);
+        	     alert(XMLHttpRequest.responseText);
+        	     alert(XMLHttpRequest.statusText);
+        	     alert(textStatus);
+        	     alert(errorThrown);
+        	  }
+        	
 		});
 	};
 
