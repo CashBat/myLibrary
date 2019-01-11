@@ -10,6 +10,8 @@ public interface GenreService {
 	public Collection<Genre> getAllGenres();
 	
 	public Collection<Book> getAllBooks();
+	
+	public Collection<Book> getAvailabilityBooks();
 
 
 }

@@ -209,7 +209,7 @@
                 	
             		var id = item.id || "";
             		indx=id;
-                    var title = item.title != null ? item.title  : "";            
+                    var title = item.name != null ? item.name  : "";            
                 	var rowStr = generateBoksList(id, title);
                 	$listBoks.append(rowStr);	
             		books.set(id, item);

@@ -6,13 +6,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import myLibrary.service.GenreService;
 import myLibrary.service.ServisBookRentalInfo;
-import myLibrary.service.exception.NotRecordsException;
 import myLibrary.service.exception.NotRecordsException2;
 
 //создал ветку
@@ -45,10 +43,19 @@ public class RestServiceLibrary {
 		return Response.ok(serviceGenre.getAllBooks()).build();
 	}
 
+
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
 	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked) {
 		return Response.ok(servisBookRentalInfo.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
+	}
+
+
+	
+	@GET
+	@Path(value = "/availabilityBooks")
+	public Response getAvailabilityBooks() {
+		return Response.ok(serviceGenre.getAvailabilityBooks()).build();
 	}
 
 }

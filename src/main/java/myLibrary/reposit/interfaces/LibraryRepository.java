@@ -3,6 +3,7 @@ package myLibrary.reposit.interfaces;
 import java.util.Collection;
 
 import myLibrary.model.LibraryEntity;
+import myLibrary.service.specific.LibrarySpecification;
 
 public interface LibraryRepository <T extends LibraryEntity> {
 
@@ -18,7 +19,7 @@ public interface LibraryRepository <T extends LibraryEntity> {
 	
 	public int  getID();
 	
-	public Collection<T> query(GenreSpecification specification);
+	public Collection<T> query(LibrarySpecification specification);
 	
 
 

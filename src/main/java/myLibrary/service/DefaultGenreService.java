@@ -10,6 +10,8 @@ import myLibrary.model.Genre;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepGenre;
 import myLibrary.reposit.interfaces.LibraryRepository;
+import myLibrary.service.specific.BookAvailabilitySpecification;
+
 
 @Stateless
 public class DefaultGenreService implements GenreService {
@@ -22,13 +24,17 @@ public class DefaultGenreService implements GenreService {
 
 	@Override
 	public Collection<Genre> getAllGenres() {
-
-		return repGenre.values();
+		return repGenre.query(new BookAvailabilitySpecification());
+		//return repGenre.values();
 	}
 
 	@Override
 	public Collection<Book> getAllBooks() {
 
 		return repBook.values();
+	}
+	
+	public Collection<Book> getAvailabilityBooks(){
+		return repBook.query(new BookAvailabilitySpecification());
 	}
 }
