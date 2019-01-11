@@ -29,4 +29,10 @@ public class RestServiceLibrary {
 	public Response getAllBooks() {
 		return Response.ok(serviceGenre.getAllBooks()).build();
 	}
+	
+	@GET
+	@Path(value = "/availabilityBooks")
+	public Response getAvailabilityBooks() {
+		return Response.ok(serviceGenre.getAvailabilityBooks()).build();
+	}
 }
