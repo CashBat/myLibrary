@@ -1,26 +1,20 @@
 package myLibrary.service.exception;
 
+import java.io.IOException;
+
 import javax.ejb.ApplicationException;
-import javax.ws.rs.WebApplicationException;
 
 @ApplicationException
-public class NotFoundException  extends WebApplicationException {
+public class NotFoundException extends IOException {
 
-	private static final long serialVersionUID = -6034983270973548189L;
 
-	public NotFoundException() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3803842565037672793L;
 
 	public NotFoundException(String message) {
-		
 		super(message);
-		
 	}
 
-	
-	 
 }
-
-	  

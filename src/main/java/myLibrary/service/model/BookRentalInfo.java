@@ -10,7 +10,7 @@ import myLibrary.model.RecordReaderTicket;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class BookRentalInfo {
+public class BookRentalInfo  {
 	RecordReaderTicket record;
 	Integer statusRental;
 }

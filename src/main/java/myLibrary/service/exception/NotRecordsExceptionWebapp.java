@@ -6,90 +6,90 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-public class NotRecordsException extends WebApplicationException {
+public class NotRecordsExceptionWebapp extends WebApplicationException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3829069470330133821L;
 
-	public NotRecordsException() {
+	public NotRecordsExceptionWebapp() {
 	super();
 		
 	}
 
-	public NotRecordsException(int status) {
+	public NotRecordsExceptionWebapp(int status) {
 		super(status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(Response response) {
+	public NotRecordsExceptionWebapp(Response response) {
 		super(response);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(Status status) {
+	public NotRecordsExceptionWebapp(Status status) {
 		super(status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, int status) {
+	public NotRecordsExceptionWebapp(String message, int status) {
 		super(message, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Response response) {
+	public NotRecordsExceptionWebapp(String message, Response response) {
 		super(message, response);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Status status) {
+	public NotRecordsExceptionWebapp(String message, Status status) {
 		super(message, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Throwable cause, int status) {
+	public NotRecordsExceptionWebapp(String message, Throwable cause, int status) {
 		super(message, cause, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Throwable cause, Response response) {
+	public NotRecordsExceptionWebapp(String message, Throwable cause, Response response) {
 		super(message, cause, response);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Throwable cause, Status status) throws IllegalArgumentException {
+	public NotRecordsExceptionWebapp(String message, Throwable cause, Status status) throws IllegalArgumentException {
 		super(message, cause, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message, Throwable cause) {
+	public NotRecordsExceptionWebapp(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(String message) {
+	public NotRecordsExceptionWebapp(String message) {
 	
 		super(Response.status(Response.Status.NOT_FOUND).
 			    entity(message).type("text/plain").build());
 	}
 
-	public NotRecordsException(Throwable cause, int status) {
+	public NotRecordsExceptionWebapp(Throwable cause, int status) {
 		super(cause, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(Throwable cause, Response response) {
+	public NotRecordsExceptionWebapp(Throwable cause, Response response) {
 		super(cause, response);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(Throwable cause, Status status) throws IllegalArgumentException {
+	public NotRecordsExceptionWebapp(Throwable cause, Status status) throws IllegalArgumentException {
 		super(cause, status);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotRecordsException(Throwable cause) {
+	public NotRecordsExceptionWebapp(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

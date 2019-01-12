@@ -1,5 +1,6 @@
 package myLibrary.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.EqualsAndHashCode;
@@ -12,6 +13,6 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class ReaderTicket extends AbstractLibraryEntity {
 	private Reader reader;
-	private List<RecordReaderTicket> records;
+	private List<RecordReaderTicket> records = new ArrayList<RecordReaderTicket>();
 	
 }

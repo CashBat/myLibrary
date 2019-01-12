@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 
 import myLibrary.service.GenreService;
 import myLibrary.service.ServisBookRentalInfo;
-import myLibrary.service.exception.NotRecordsException2;
+import myLibrary.service.exception.NotRecordsReaderTicketException;
 
 //создал ветку
 @Path("/main")
@@ -33,9 +33,9 @@ public class RestServiceLibrary {
 
 	@GET
 	@Path(value = "/books")
-	public Response getAllBooks() {
+	public Response getAllBooks() throws NotRecordsReaderTicketException {
 		if (true) {
-			throw new	NotRecordsException2("ServisBookRentalInfo222 - \r\n" + 
+			throw new	NotRecordsReaderTicketException("ServisBookRentalInfo222 - \r\n" + 
 					"no records");
 			/*throw new NoRecordsException("ServisBookRentalInfo - \r\n" + 
 					"no records");*/
@@ -46,7 +46,7 @@ public class RestServiceLibrary {
 
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
-	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked) {
+	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked) throws NotRecordsReaderTicketException {
 		return Response.ok(servisBookRentalInfo.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
 	}
 
