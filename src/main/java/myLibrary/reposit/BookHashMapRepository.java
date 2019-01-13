@@ -1,14 +1,12 @@
-package myLibrary.reposit.impl;
+package myLibrary.reposit;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import myLibrary.model.Book;
-import myLibrary.model.Genre;
-import myLibrary.reposit.abs.AbstractHashMapLibraryRepository;
+import myLibrary.entity.Book;
+import myLibrary.entity.Genre;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepGenre;
-import myLibrary.reposit.interfaces.LibraryRepository;
 
 @ApplicationScoped
 @RepBook

@@ -1,8 +1,5 @@
-package myLibrary.service.exception;
+package myLibrary.rest.exception;
 
-import javax.ejb.ApplicationException;
-
-@ApplicationException
 public class NotRecordsReaderTicketException extends NotFoundException {
 
 	private static final long serialVersionUID = 3215414970238322287L;

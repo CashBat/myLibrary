@@ -8,18 +8,20 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.apache.commons.lang3.time.DateUtils;
-import myLibrary.model.Book;
-import myLibrary.model.ReaderTicket;
-import myLibrary.model.RecordReaderTicket;
+
+import myLibrary.entity.Book;
+import myLibrary.entity.ReaderTicket;
+import myLibrary.entity.RecordReaderTicket;
+import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
-import myLibrary.reposit.interfaces.LibraryRepository;
-import myLibrary.service.exception.NotRecordsReaderTicketException;
+import myLibrary.rest.exception.NotRecordsReaderTicketException;
+import myLibrary.service.interfasec.RiderTicketService;
 import myLibrary.service.model.BookRentalInfo;
 
 @Stateless
-public class ServisBookRentalInfo {
+public class DefaultRiderTicketService implements RiderTicketService {
 
 	@Inject
 	@RepBook

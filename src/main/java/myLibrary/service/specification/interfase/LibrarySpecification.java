@@ -1,7 +1,6 @@
-package myLibrary.service.specific;
+package myLibrary.service.specification.interfase;
 
 import java.util.Collection;
-import myLibrary.model.LibraryEntity;
 
 public interface LibrarySpecification {
 	<T> Collection<T> satisfiedBy(Collection<T> libraryEntitys);

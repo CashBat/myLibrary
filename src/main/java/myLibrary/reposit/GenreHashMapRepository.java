@@ -1,10 +1,9 @@
-package myLibrary.reposit.impl;
+package myLibrary.reposit;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.model.Genre;
-import myLibrary.reposit.abs.AbstractHashMapLibraryRepository;
+import myLibrary.entity.Genre;
 import myLibrary.reposit.annot.RepGenre;
 
 @ApplicationScoped

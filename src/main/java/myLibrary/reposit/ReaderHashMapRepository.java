@@ -1,12 +1,9 @@
-package myLibrary.reposit.impl;
+package myLibrary.reposit;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.model.Genre;
-import myLibrary.model.Reader;
-import myLibrary.reposit.abs.AbstractHashMapLibraryRepository;
-import myLibrary.reposit.annot.RepGenre;
+import myLibrary.entity.Reader;
 import myLibrary.reposit.annot.RepReader;
 
 @ApplicationScoped
@@ -34,7 +31,7 @@ public class ReaderHashMapRepository extends AbstractHashMapLibraryRepository<Re
 		reader.setId(getID());
 		reader.setFio("Димка Багрей");
 		reader.setTel("856789569875");
-		add(reader);	
+		add(reader);
 	}
 
 }

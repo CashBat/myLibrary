@@ -4,7 +4,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import myLibrary.service.exception.NotFoundException;
+import myLibrary.rest.exception.NotFoundException;
 
 @Provider
 public class NotFoundMapper implements ExceptionMapper<NotFoundException> {

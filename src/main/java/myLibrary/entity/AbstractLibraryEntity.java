@@ -1,4 +1,4 @@
-package myLibrary.model;
+package myLibrary.entity;
 
 public abstract class AbstractLibraryEntity implements LibraryEntity {
 

@@ -9,9 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import myLibrary.service.GenreService;
-import myLibrary.service.ServisBookRentalInfo;
-import myLibrary.service.exception.NotRecordsReaderTicketException;
+import myLibrary.rest.exception.NotRecordsReaderTicketException;
+import myLibrary.service.interfasec.BookService;
+import myLibrary.service.interfasec.RiderTicketService;
 
 //создал ветку
 @Path("/main")
@@ -20,10 +20,10 @@ import myLibrary.service.exception.NotRecordsReaderTicketException;
 public class RestServiceLibrary {
 
 	@Inject
-	GenreService serviceGenre;
+	BookService serviceGenre;
 
 	@Inject
-	ServisBookRentalInfo servisBookRentalInfo;
+	RiderTicketService serviceRiderTicket;
 
 	@GET
 	@Path(value = "/genres")
@@ -34,24 +34,17 @@ public class RestServiceLibrary {
 	@GET
 	@Path(value = "/books")
 	public Response getAllBooks() throws NotRecordsReaderTicketException {
-		if (true) {
-			throw new	NotRecordsReaderTicketException("ServisBookRentalInfo222 - \r\n" + 
-					"no records");
-			/*throw new NoRecordsException("ServisBookRentalInfo - \r\n" + 
-					"no records");*/
-	}
+
 		return Response.ok(serviceGenre.getAllBooks()).build();
 	}
 
-
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
-	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked) throws NotRecordsReaderTicketException {
-		return Response.ok(servisBookRentalInfo.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
+	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
+			throws NotRecordsReaderTicketException {
+		return Response.ok(serviceRiderTicket.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
 	}
 
-
-	
 	@GET
 	@Path(value = "/availabilityBooks")
 	public Response getAvailabilityBooks() {

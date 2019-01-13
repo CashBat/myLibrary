@@ -3,9 +3,7 @@ package myLibrary.service.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import myLibrary.model.Book;
-import myLibrary.model.RecordReaderTicket;
-
+import myLibrary.entity.RecordReaderTicket;
 
 @Setter
 @Getter

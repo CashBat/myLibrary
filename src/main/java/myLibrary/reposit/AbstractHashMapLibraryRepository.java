@@ -1,13 +1,12 @@
 
-package myLibrary.reposit.abs;
+package myLibrary.reposit;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import myLibrary.model.LibraryEntity;
-import myLibrary.reposit.interfaces.LibraryRepository;
-import myLibrary.service.specific.LibrarySpecification;
+import myLibrary.entity.LibraryEntity;
+import myLibrary.service.specification.interfase.LibrarySpecification;
 
 public abstract class AbstractHashMapLibraryRepository<T extends LibraryEntity> implements LibraryRepository<T> {
 
@@ -30,7 +29,6 @@ public abstract class AbstractHashMapLibraryRepository<T extends LibraryEntity> 
 	public void delite(int id) {
 		libraryEntits.remove(id);
 	}
-
 
 	public T getEntity(int id) {
 		return libraryEntits.get(id);

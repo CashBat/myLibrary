@@ -1,4 +1,4 @@
-package myLibrary.model;
+package myLibrary.entity;
 
 public interface LibraryEntity {
 	Integer getId();
