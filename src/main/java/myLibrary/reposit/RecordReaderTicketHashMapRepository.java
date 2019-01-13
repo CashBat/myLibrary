@@ -43,7 +43,7 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 
 		record = new RecordReaderTicket();
 		record.setId(getID());
-		record.setBook(repBook.getEntity(1));
+		record.setBook(repBook.getEntity(3));
 		/* record.setReaderTicket(repReaderTicket.getEntity(4)); */
 		record.setDateIssue(new SimpleDateFormat("dd.MM.yyyy").parse("20.12.2018"));
 		record.setQuantityRentDay(12);

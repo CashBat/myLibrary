@@ -11,6 +11,8 @@ public interface BookService {
 
 	public Collection<Book> getAllBooks();
 
-	public Collection<Book> getAvailabilityBooks();
+	public Collection<Book> getBooksAvailable();
+	
+	public Collection<Book> getBooksOnHand();
 
 }

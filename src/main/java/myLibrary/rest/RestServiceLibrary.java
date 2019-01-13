@@ -46,9 +46,15 @@ public class RestServiceLibrary {
 	}
 
 	@GET
-	@Path(value = "/availabilityBooks")
-	public Response getAvailabilityBooks() {
-		return Response.ok(serviceGenre.getAvailabilityBooks()).build();
+	@Path(value = "/booksAvailable")
+	public Response getBooksAvailable() {
+		return Response.ok(serviceGenre.getBooksAvailable()).build();
+	}
+
+	@GET
+	@Path(value = "/booksOnHand")
+	public Response getBooksOnHand() {
+		return Response.ok(serviceGenre.getBooksOnHand()).build();
 	}
 
 }
