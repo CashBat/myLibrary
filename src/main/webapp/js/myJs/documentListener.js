@@ -13,6 +13,9 @@ $(document).ready(function(){
 			$("#titleDesktop").html(title);
 			$(".list-group").bind("click", clickListGroup);
 			
+			$("#list-rent-list").click( function(){ 
+				loadReaderTicket(1);
+			});
 			
 			
 		
@@ -27,7 +30,7 @@ $(document).ready(function(){
 		});*/
 		
 		/*
-		$('table tr').on("click", function(){ //удаляет строку из таблицы по которой кликаешь
+		$('table tr').on("click", function(){ //удаляет строку из таблицы по которой кликаешь (функция on работает с элементами которые были созданы при загрузке страници, а тагже видит добавленные элементы)
 		$(this).remove();
 		});
 		
@@ -44,5 +47,7 @@ $(document).ready(function(){
 			var a = $(this).find("td").first().text(); //в текущей строке берутся все td, из них берется первый и извлекается текст.
 			echo(a);	
 		});
+		
+		$(".list-group").bind("click", clickListGroup); //отслеживаю нажатие на кнопку лист гроуп, болучаю объект на который нажали, получаю его текст  и изменияю титульник (работает только с элементами которые были созданы при загрузке страницы)
 		
 		*/

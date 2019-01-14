@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import myLibrary.rest.exception.NotReaderTicketException;
 import myLibrary.rest.exception.NotRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.interfasec.RiderTicketService;
@@ -41,7 +42,7 @@ public class RestServiceLibrary {
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
 	public Response getRentalInfoBooksForReaderTicked(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
-			throws NotRecordsReaderTicketException {
+			throws NotRecordsReaderTicketException, NotReaderTicketException {
 		return Response.ok(serviceRiderTicket.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
 	}
 

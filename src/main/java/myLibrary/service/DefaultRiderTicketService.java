@@ -16,6 +16,7 @@ import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
+import myLibrary.rest.exception.NotReaderTicketException;
 import myLibrary.rest.exception.NotRecordsReaderTicketException;
 import myLibrary.service.interfasec.RiderTicketService;
 import myLibrary.service.model.BookRentalInfo;
@@ -34,9 +35,13 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	LibraryRepository<RecordReaderTicket> repRecordReaderTicket;
 
 	public Collection<BookRentalInfo> getRentalInfoBooksForReaderTicked(int idReaderTicked)
-			throws NotRecordsReaderTicketException {
+			throws NotRecordsReaderTicketException, NotReaderTicketException {
 
 		ReaderTicket readerTicket = repReaderTicket.getEntity(idReaderTicked);
+
+		if (readerTicket == null) {
+			throw new NotReaderTicketException();
+		}
 
 		if (readerTicket.getRecords().isEmpty()) {
 			throw new NotRecordsReaderTicketException();

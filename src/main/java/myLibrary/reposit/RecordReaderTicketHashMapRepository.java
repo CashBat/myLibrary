@@ -7,8 +7,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import myLibrary.entity.Book;
+import myLibrary.entity.ReaderTicket;
 import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.annot.RepBook;
+import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
 
 @ApplicationScoped
@@ -16,17 +18,19 @@ import myLibrary.reposit.annot.RepRecordReaderTicket;
 public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryRepository<RecordReaderTicket> {
 
 	LibraryRepository<Book> repBook;
+	LibraryRepository<ReaderTicket> repReaderTicket;
 
 	public RecordReaderTicketHashMapRepository() {
 	}
 
 	@Inject
-	public RecordReaderTicketHashMapRepository(@RepBook LibraryRepository<Book> repBook) {
+	public RecordReaderTicketHashMapRepository(@RepBook LibraryRepository<Book> repBook, @RepReaderTicket LibraryRepository<ReaderTicket> repReaderTicket) {
 		this.repBook = repBook;
+		this.repReaderTicket = repReaderTicket;
 		try {
 			initRecordReaderTicket();
 		} catch (ParseException e) {
-			e.printStackTrace(); // Понять как лучше обработать
+			e.printStackTrace(); 
 		}
 	}
 
@@ -35,7 +39,7 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 		RecordReaderTicket record = new RecordReaderTicket();
 		record.setId(getID());
 		record.setBook(repBook.getEntity(1));
-		/* record.setReaderTicket(repReaderTicket.getEntity(1)); */
+		 record.setReaderTicket(repReaderTicket.getEntity(1)); 
 		record.setDateIssue(new SimpleDateFormat("dd.MM.yyyy").parse("25.12.2018"));
 		record.setQuantityRentDay(12);
 		record.setReturnDate(new SimpleDateFormat("dd.MM.yyyy").parse("30.12.2018"));
@@ -44,7 +48,7 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 		record = new RecordReaderTicket();
 		record.setId(getID());
 		record.setBook(repBook.getEntity(3));
-		/* record.setReaderTicket(repReaderTicket.getEntity(4)); */
+		 record.setReaderTicket(repReaderTicket.getEntity(1)); 
 		record.setDateIssue(new SimpleDateFormat("dd.MM.yyyy").parse("20.12.2018"));
 		record.setQuantityRentDay(12);
 		record.setReturnDate(new SimpleDateFormat("dd.MM.yyyy").parse("24.12.2018"));
@@ -53,7 +57,7 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 		record = new RecordReaderTicket();
 		record.setId(getID());
 		record.setBook(repBook.getEntity(2));
-		/* record.setReaderTicket(repReaderTicket.getEntity(4)); */
+		record.setReaderTicket(repReaderTicket.getEntity(4)); 
 		record.setDateIssue(new SimpleDateFormat("dd.MM.yyyy").parse("20.12.2018"));
 		record.setQuantityRentDay(12);
 		add(record);
