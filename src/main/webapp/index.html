@@ -16,26 +16,31 @@
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/notify.min.js"></script>
+<script type="text/javascript" src="js/myJs/documentListener.js"></script>
+<script type="text/javascript" src="js/myJs/functionСommon.js"></script>
+<script type="text/javascript" src="js/myJs/table.js"></script>
+<script type="text/javascript" src="js/myJs/ajax.js"></script>
 
 <title>Hello, world!</title>
+
 </head>
 <body>
 	<div class="container">
-		<div class="h-bs">
+		<!--	<div class="h-bs">
 			<div class="row">
 				<div class="col">
 					<h2>Библиотека</h2>
 				</div>
 			</div>
-		</div>
-
+		</div> 
+	-->
 
 
 
 		<div class="b-bs">
 
 			<div class="row" id="infoDiv">
-				<h3>Рабочий стол</h3>
+				<h3 id="titleDesktop">Рабочий стол</h3>
 			</div>
 
 			<div class="row"></div>
@@ -51,10 +56,7 @@
 							role="tab" aria-controls="profile">Хранилище</a> <a
 							class="list-group-item list-group-item-action"
 							id="list-messages-list" data-toggle="list" href="#list-messages"
-							role="tab" aria-controls="messages">Прокат</a> <a
-							class="list-group-item list-group-item-action"
-							id="list-settings-list" data-toggle="list" href="#list-settings"
-							role="tab" aria-controls="settings">Профиль</a>
+							role="tab" aria-controls="messages">Прокат</a>
 					</div>
 				</div>
 				<div class="col">
@@ -65,6 +67,15 @@
 
 							<div class="row">
 								<div class="col">
+
+
+
+
+
+
+
+
+
 
 									<form id="add-book-form">
 
@@ -97,6 +108,8 @@
 
 
 
+
+
 										<button class="btn btn-add float-right" type="button"
 											onclick="handleAddButton(this)">Добавить книгу</button>
 
@@ -120,164 +133,119 @@
 						<div class="tab-pane fade" id="list-profile" role="tabpanel"
 							aria-labelledby="list-profile-list">
 
-							<div class="col">
+							<div class="col" id="listBoks">
+
+								<label for="sel2">Mutiple select list (hold shift to
+									select more than one):</label> <select multiple class="form-control"
+									id="sel2" name="sellist2">
+								</select>
+
+
+							</div>
+							<!-- Small switch -->
+							<div class="form-group">
+								<span class="switch switch-sm"> <input type="checkbox"
+									class="switch" id="switch-sm" value=true> <label
+									for="switch-sm">Small switch</label>
+								</span>
+							</div>
 
 
 
-								<div class="form-group row">
-									<label for="sel2" class="col-sm-2 col-form-label">Хранилище
-									</label>
-									<div class="col-sm-10">
-										<select id="sel2" name="sellist2" class="form-control"
-											onchange="changeData(this.value)">
-											<option>Default select</option>
-										</select>
+						</div>
+
+						<div class="tab-pane fade" id="list-messages" role="tabpanel"
+							aria-labelledby="list-profile-list">
+
+
+
+							<div class="row" id="infoRiderPanel">
+								<div class="col-sm-5" id="searchRiderTickedPanel">
+									<div class="form-group row">
+										<label for="sel2" class="col-sm-auto col-form-label text-left">Номер
+											читательского билета </label>
+										<div class="col-sm-4">
+											<input name="inputReaderTicket" id="IDInputReaderTicket"
+												type="text" class="form-control" placeholder="Номер"
+												aria-label="inputReaderTicket"
+												aria-describedby="basic-addon2">
+										</div>
 									</div>
 								</div>
 
-
-
+								<div class="col-sm-7" id="infoRiderPanel">
+									<table class="table table-striped">
+										<tbody>
+											<tr class="d-flex">
+												<td class="col-2">ФИО</td>
+												<td class="col-10" id="fioRider">...</td>
+											</tr>
+											<tr class="d-flex">
+												<td class="col-2">Телефон</td>
+												<td class="col-10" id="telRider">...</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 
+							<div class="col" id="recordRiderTickedPanel">
 
-							<div class="col" id="infoBook">
-								<table class="table table-striped">
+								<table class="table  table-hover">
+									<thead>
+										<tr>
+											<th class="idRecordRent">idRecord</th>
+											<th>Код книги</th>
+											<th>Название книги</th>
+											<th>Дата выдачи</th>
+											<th>Количество дней на аренду</th>
+											<th>Статус аренды</th>
+										</tr>
+									</thead>
 									<tbody>
-										<tr class="d-flex">
-											<td class="col-2">Название</td>
-											<td class="col-10" id="infoNameBook">...</td>
+										<tr class="recordRent">
+											<td class="idRecordRent">1</td>
+											<td>Mark</td>
+											<td>Otto</td>
+											<td>@mdo</td>
+
 										</tr>
-										<tr class="d-flex">
-											<td class="col-2">Жанр</td>
-											<td class="col-10" id="infoGenreBook">...</td>
-										</tr>
-										<tr class="d-flex">
-											<td class="col-2">Описание</td>
-											<td class="col-10" id="infoDescriptionBook">...</td>
-										</tr>
-										<tr class="d-flex">
-											<td class="col-2">Статус</td>
-											<td class="col-10" id="infoAvailabilityBook">...</td>
-										</tr>
+
+
 									</tbody>
 								</table>
+
 							</div>
+
+
 						</div>
+
+
 					</div>
-
-
-
-
 				</div>
-				<div class="tab-pane fade" id="list-messages" role="tabpanel"
-					aria-labelledby="list-messages-list">...</div>
-				<div class="tab-pane fade" id="list-settings" role="tabpanel"
-					aria-labelledby="list-settings-list">...</div>
 			</div>
+
+
 		</div>
-	</div>
-
-
-	</div>
 
 
 
 	</div>
+
+
+
+
+
+	<footer class="page-footer font-small special-color-dark pt-4">
+		<div class="footer-copyright text-center py-3">© 2018 library</div>
+	</footer>
+
 
 </body>
 
-<script type="text/javascript">
-	var baseURL = "http://localhost:8080/myLibrary";
-	var indx =0;
-	var $listBoks = $('#sel2');
-
-	var books = new Map();
-
-	$(document).ready(function() {
-		loadBooksStore(); 
-	});
 
 
-	function loadBooksStore() {
-		$.ajax({
-            url: "service/main/books",
-            type: "get",
-            success: function(data) {
 
 
-            	$.each(data, function(i, item) {
-                	
-            		var id = item.id || "";
-            		indx=id;
-                    var title = item.name != null ? item.name  : "";            
-                	var rowStr = generateBoksList(id, title);
-                	$listBoks.append(rowStr);	
-            		books.set(id, item);
-            		
-            		
-				});       
-
-        	},
-        	error: function(XMLHttpRequest, textStatus, errorThrown) {
-        		alert(XMLHttpRequest.status);
-        	     alert(XMLHttpRequest.responseText);
-        	     alert(XMLHttpRequest.statusText);
-        	     alert(textStatus);
-        	     alert(errorThrown);
-        	  }
-        	
-		});
-	};
-
-	
-	
-
-	  function addClothes(nameBook) {
-		  indx=indx+1;
-		  var rowStr = generateBoksList(indx,nameBook);
-		  $listBoks.append(rowStr);
-	     
-	    }
-
-
-	
-
-
-	    
-	  function changeData(id) {
-		  var book = books.get(parseInt(id)) || null; 
-		//  $.notify("Одежда удалена (id: " + book.title+ ")", "success");
-		
-		var titleBook =   book.title != null ? book.title : ""; 
-		var titleGenre =  book.genre != null ? book.genre.title  : ""; 
-		var description = book.description != null ? book.description  : ""; 
-		var availability = book.availability == true ? "В наличии": "Отсутствует";
-		
-		  $('#infoNameBook').text(titleBook);
-		  $('#infoGenreBook').text(titleGenre);
-		  $('#infoDescriptionBook').text(description);
-		  $('#infoAvailabilityBook').text(availability);
-
- 
-	  $.notify("Одежда удалена (id: " + id + ")", "success");
-	  }
-	  function handleAddButton(el) {
-		  var addBookForm = $("#add-book-form");
-	        var nameBook = addBookForm.find('input[name=nameBook]').val();
-	          addClothes(nameBook);     
-	    }
-
-
-	  function generateBoksList(inId, title) {
-	    	var html = [];  	        
-	    	html.push(
-	    			 '<option ' + ' value="' + inId + '">' + title + '</option>'
-	   			);
-	        return html.join("");
-	    }
-
-
-	 
-	</script>
 </html>
 

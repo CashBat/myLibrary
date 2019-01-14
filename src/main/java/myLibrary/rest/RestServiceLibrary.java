@@ -40,7 +40,7 @@ public class RestServiceLibrary {
 
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
-	public Response getAllBooks(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
+	public Response getRentalInfoBooksForReaderTicked(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
 			throws NotRecordsReaderTicketException {
 		return Response.ok(serviceRiderTicket.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
 	}
