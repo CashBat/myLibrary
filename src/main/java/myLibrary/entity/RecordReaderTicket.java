@@ -2,7 +2,7 @@ package myLibrary.entity;
 
 import java.util.Date;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +18,7 @@ public class RecordReaderTicket extends AbstractLibraryEntity {
 	private Date dateIssue;
 	private int quantityRentDay;
 	private Date returnDate;
+	@JsonIgnore
 	private ReaderTicket readerTicket; 
 
 }

@@ -14,9 +14,11 @@ public class ReaderTicket extends AbstractLibraryEntity {
 	private Reader reader;
 	private List<RecordReaderTicket> records = new ArrayList<RecordReaderTicket>();
 
+
 	public void addRecord(RecordReaderTicket record) {
 		records.add(record);
 		record.setReaderTicket(this);
+
 	}
 
 	public void removeRecord(RecordReaderTicket record) {

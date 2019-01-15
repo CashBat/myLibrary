@@ -42,10 +42,8 @@ public class ReaderTicketHashMapRepository extends AbstractHashMapLibraryReposit
 		ReaderTicket readerTicket = new ReaderTicket();
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(1));
-		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(1), "25.12.2018",
-				12, "30.12.2018"));
-		/*readerTicket.addRecord(createDefaultRecord(repBook.getEntity(3), "20.12.2018",
-				12, "24.12.2018"));*/
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(1), "25.12.2018", 12, "30.12.2018"));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(3), "20.12.2018", 12, "24.12.2018"));
 		add(readerTicket);
 
 		readerTicket = new ReaderTicket();
@@ -61,13 +59,14 @@ public class ReaderTicketHashMapRepository extends AbstractHashMapLibraryReposit
 		readerTicket = new ReaderTicket();
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(4));
-		/*readerTicket.addRecord(createDefaultRecord( repBook.getEntity(4), "20.12.2018",
-				12, null));*/
+
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(4), "20.12.2018", 12, null));
+
 		add(readerTicket);
 
 	}
 
-	private RecordReaderTicket createDefaultRecord( Book book, String dateIssue, int quantityRentDay,
+	private RecordReaderTicket createDefaultRecord(Book book, String dateIssue, int quantityRentDay,
 			String returnDate) {
 		String dateFormat = "dd.MM.yyyy";
 		RecordReaderTicket record = new RecordReaderTicket();

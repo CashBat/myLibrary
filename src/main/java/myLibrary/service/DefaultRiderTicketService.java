@@ -5,15 +5,16 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 import org.apache.commons.lang3.time.DateUtils;
 
-import myLibrary.entity.Book;
+import myLibrary.entity.Reader;
 import myLibrary.entity.ReaderTicket;
 import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.LibraryRepository;
-import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
 import myLibrary.rest.exception.NotReaderTicketException;
@@ -24,11 +25,13 @@ import myLibrary.service.model.BookRentalInfo;
 @Stateless
 public class DefaultRiderTicketService implements RiderTicketService {
 
-
 	@Inject
 	@RepReaderTicket
 	LibraryRepository<ReaderTicket> repReaderTicket;
 
+	@Inject
+	@RepRecordReaderTicket
+	LibraryRepository<RecordReaderTicket> repRecordReaderTicket;
 
 	public Collection<BookRentalInfo> getRentalInfoBooksForReaderTicked(int idReaderTicked)
 			throws NotRecordsReaderTicketException, NotReaderTicketException {
@@ -55,6 +58,17 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		}
 
 		return rentalInfoBooks;
+	}
+	
+	
+	public Reader getReaderByReaderTickedId (int idReaderTicked) throws NotReaderTicketException {
+		ReaderTicket readerTicket = repReaderTicket.getEntity(idReaderTicked);
+		if (readerTicket == null) {
+			throw new NotReaderTicketException();
+		}
+		return readerTicket.getReader();
+		
+		
 	}
 
 	private Integer getStatusRental(Date dateIssue, Date returnDate, int quantityRentDay) {

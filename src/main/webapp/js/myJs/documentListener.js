@@ -14,7 +14,8 @@ $(document).ready(function(){
 			$(".list-group").bind("click", clickListGroup);
 			
 			$("#list-rent-list").click( function(){ 
-				loadReaderTicket(1);
+				loadReader(1);
+				loadRentalInfoBooks(1);
 			});
 			
 			

@@ -1,4 +1,3 @@
-
 function loadBooksStore() {
 	$.ajax({
 		url : "service/main/books",
@@ -28,36 +27,49 @@ function loadBooksStore() {
 	});
 };
 
-function loadReaderTicket(ReadTicketId) {
+function loadReader(ReadTicketId) {
+	$.ajax({
+		url : "service/main/reader/" + ReadTicketId,
+		type : "get",
+		success : function(data) {
+
+			var reader = data;
+			$("#fioRider").html(reader.fio);
+			$("#telRider").html(reader.tel);
+		}
+	});
+};
+
+function loadRentalInfoBooks(ReadTicketId) {
 
 	$.ajax({
 		url : "service/main/rentalInfoBooks/" + ReadTicketId,
 		type : "get",
 		success : function(data) {
-			
-			var reader = data.record.readerTicket;
-			$("#fioRider").html(reader.fio);
-			$("#telRider").html(reader.tel);
-			/*
-			$.each(data.records, function(i, item) {
-				var recordRentTictetID=item.id;
-				var book=item.book;
-				var dateIssue =
-				var quantityRentDay
-				var returnDate
-				var statusRental
-				
-				$("#recordRiderTickedPanel table").append(
-						"<tr class='recordRent'>"+
-						"<td class='idRecordRent'>"+item.id+"</td>"+
-						"<td>"+item.id+"</td>"+
-						"<td>Otto</td>"+
-						"<td>@mdo</td>"+
-						"</tr>"
-				)
-				
 
-			});*/
+			 $.each(data, function(i, item) { 
+				var record = item.record; 
+			var recordRentTictetID=record.id;
+			 var book=record.book;
+			 var bookCode=book.id;
+			 var bookName=book.name;
+			 var dateIssue = record.dateIssue;
+			 var quantityRentDay=record.quantityRentDay;
+			 var returnDate=record.returnDate;
+			 var statusRental = item.statusRental;
+			 
+			 $("#recordRiderTickedPanel table").append( 
+			 "<tr class='recordRent'>"+
+					 "<td class='idRecordRent'>"+recordRentTictetID+"</td>" +
+				     "<td>"+bookCode+"</td>"+ 
+				     "<td>"+bookName+"</td>"+ 
+				     "<td>"+dateIssue+"</td>"+ 
+				     "<td>"+quantityRentDay+"</td>"+ 
+				     "<td>"+bookCode+"</td>"+ 
+				     "<td>"+statusRental+"</td>"+
+			 "</tr>" )
+			  });
+			 
 		}
 	});
 };

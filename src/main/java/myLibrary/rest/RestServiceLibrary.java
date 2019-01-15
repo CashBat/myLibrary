@@ -41,9 +41,16 @@ public class RestServiceLibrary {
 
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
-	public Response getRentalInfoBooksForReaderTicked(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
+	public Response getRentalInfoBooksByReaderTickedId(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
 			throws NotRecordsReaderTicketException, NotReaderTicketException {
 		return Response.ok(serviceRiderTicket.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
+	}
+	
+	@GET
+	@Path(value = "/reader/{idReaderTicked}")
+	public Response getReaderByReaderTickedId(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
+			throws NotRecordsReaderTicketException, NotReaderTicketException {
+		return Response.ok(serviceRiderTicket.getReaderByReaderTickedId(idReaderTicked)).build();
 	}
 
 	@GET
