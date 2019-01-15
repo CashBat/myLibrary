@@ -24,15 +24,11 @@ import myLibrary.service.model.BookRentalInfo;
 @Stateless
 public class DefaultRiderTicketService implements RiderTicketService {
 
-	@Inject
-	@RepBook
-	LibraryRepository<Book> repBook;
+
 	@Inject
 	@RepReaderTicket
 	LibraryRepository<ReaderTicket> repReaderTicket;
-	@Inject
-	@RepRecordReaderTicket
-	LibraryRepository<RecordReaderTicket> repRecordReaderTicket;
+
 
 	public Collection<BookRentalInfo> getRentalInfoBooksForReaderTicked(int idReaderTicked)
 			throws NotRecordsReaderTicketException, NotReaderTicketException {

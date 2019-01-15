@@ -1,31 +1,18 @@
 package myLibrary.reposit;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.ReaderTicket;
 import myLibrary.entity.RecordReaderTicket;
-import myLibrary.reposit.annot.RepBook;
-import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
 
 @ApplicationScoped
 @RepRecordReaderTicket
 public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryRepository<RecordReaderTicket> {
 
-	LibraryRepository<Book> repBook;
-	LibraryRepository<ReaderTicket> repReaderTicket;
-
-	public RecordReaderTicketHashMapRepository() {
-	}
-
+	/*
 	@Inject
-	public RecordReaderTicketHashMapRepository(@RepBook LibraryRepository<Book> repBook, @RepReaderTicket LibraryRepository<ReaderTicket> repReaderTicket) {
-		this.repBook = repBook;
+	public RecordReaderTicketHashMapRepository( @RepReaderTicket LibraryRepository<ReaderTicket> repReaderTicket) {
+		
 		this.repReaderTicket = repReaderTicket;
 		try {
 			initRecordReaderTicket();
@@ -62,6 +49,9 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 		record.setQuantityRentDay(12);
 		add(record);
 
-	}
+	}*/
+	
+	
+
 
 }
