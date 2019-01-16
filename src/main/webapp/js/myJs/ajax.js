@@ -59,8 +59,8 @@ function loadRentalInfoBooks(ReadTicketId) {
 				var returnDate = record.returnDate;
 				var statusRental = item.statusRental;
 
-				$("#recordRiderTickedPanel table tbody").append(
-						"<tr class='recordRent'>" + "<td class='idRecordRent'>"
+				$("#rent-tablr-info table tbody").append(
+						"<tr class='record-info'>" + "<td class='record-rent-id'>"
 								+ recordRentTictetID + "</td>" + "<td>"
 								+ bookCode + "</td>" + "<td>" + bookName
 								+ "</td>" + "<td>" + dateIssue + "</td>"

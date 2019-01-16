@@ -43,9 +43,10 @@ function refreshDesktop(event) {
 }
 
 function cleanRentTabElement(){
-	$("#recordRiderTickedPanel table tbody").find("tr").remove();
+	$("#rent-tablr-info table tbody").find("tr").remove();
 	$("#fioRider").html("...");
 	$("#telRider").html("...");
+	
 	
 }
 

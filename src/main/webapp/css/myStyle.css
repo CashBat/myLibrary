@@ -1,11 +1,20 @@
-.idRecordRent{display: none}
+.record-rent-id{display: none}
 #end-act-record{display: none}
+
+
+
+#list-rent  button{width:120px;}
+
+.fixedRowTable{
+  background-color: #cbcfdc;
+}
 
 .h-bs{
   color:white;
  padding:15px;
  
 }
+
 .h-bs .row{text-align:center;padding-top:.75rem;padding-bottom:.75rem;background-color:#303547;border:1px solid #1b1e29;color:#fff}
 
 .border-div{border:1px solid #1b1e29}
