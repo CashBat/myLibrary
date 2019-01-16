@@ -36,6 +36,7 @@ function loadReader(ReadTicketId) {
 			var reader = data;
 			$("#fioRider").html(reader.fio);
 			$("#telRider").html(reader.tel);
+
 		}
 	});
 };
@@ -47,29 +48,31 @@ function loadRentalInfoBooks(ReadTicketId) {
 		type : "get",
 		success : function(data) {
 
-			 $.each(data, function(i, item) { 
-				var record = item.record; 
-			var recordRentTictetID=record.id;
-			 var book=record.book;
-			 var bookCode=book.id;
-			 var bookName=book.name;
-			 var dateIssue = record.dateIssue;
-			 var quantityRentDay=record.quantityRentDay;
-			 var returnDate=record.returnDate;
-			 var statusRental = item.statusRental;
-			 
-			 $("#recordRiderTickedPanel table").append( 
-			 "<tr class='recordRent'>"+
-					 "<td class='idRecordRent'>"+recordRentTictetID+"</td>" +
-				     "<td>"+bookCode+"</td>"+ 
-				     "<td>"+bookName+"</td>"+ 
-				     "<td>"+dateIssue+"</td>"+ 
-				     "<td>"+quantityRentDay+"</td>"+ 
-				     "<td>"+bookCode+"</td>"+ 
-				     "<td>"+statusRental+"</td>"+
-			 "</tr>" )
-			  });
-			 
+			$.each(data, function(i, item) {
+				var record = item.record;
+				var recordRentTictetID = record.id;
+				var book = record.book;
+				var bookCode = book.id;
+				var bookName = book.name;
+				var dateIssue = record.dateIssue;
+				var quantityRentDay = record.quantityRentDay;
+				var returnDate = record.returnDate;
+				var statusRental = item.statusRental;
+
+				$("#recordRiderTickedPanel table tbody").append(
+						"<tr class='recordRent'>" + "<td class='idRecordRent'>"
+								+ recordRentTictetID + "</td>" + "<td>"
+								+ bookCode + "</td>" + "<td>" + bookName
+								+ "</td>" + "<td>" + dateIssue + "</td>"
+								+ "<td>" + quantityRentDay + "</td>" + "<td>"
+								+ bookCode + "</td>" + "<td>" + statusRental
+								+ "</td>" + "</tr>")
+			});
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			echoInfo(XMLHttpRequest.responseText);
+
 		}
 	});
 };

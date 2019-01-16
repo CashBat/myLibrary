@@ -110,7 +110,7 @@
 
 
 
-										<button class="btn btn-add float-right" type="button"
+										<button class="btn btn-lib-style float-right" type="button"
 											onclick="handleAddButton(this)">Добавить книгу</button>
 
 
@@ -159,21 +159,70 @@
 
 
 
+
+
+
+
+
 							<div class="row" id="infoRiderPanel">
-								<div class="col-sm-5" id="searchRiderTickedPanel">
-									<div class="form-group row">
-										<label for="sel2" class="col-sm-auto col-form-label text-left">Номер
+								<div class="col" id="searchRiderTickedPanel">
+
+									<div class="row">
+										<label for="sel2" class="col-sm-6 col-form-label text-left">Номер
 											читательского билета </label>
-										<div class="col-sm-4">
-											<input name="inputReaderTicket" id="IDInputReaderTicket"
+										<div class="col">
+											<input name="inputReaderTicket" id="input-reader-ticket-id"
 												type="text" class="form-control" placeholder="Номер"
 												aria-label="inputReaderTicket"
 												aria-describedby="basic-addon2">
 										</div>
+										<div class="col-sm-3">
+											<button class="btn btn-lib-style" type="button"
+												id="search-rider-ticket">Найти</button>
+										</div>
 									</div>
+
+									<div class="row">
+
+									<div class="col" id="init-act-record">
+									<div class="row">
+										<div class="col-3">
+											<button class="btn btn-lib-style type="button"
+												id="add-record">Добавить</button>
+										</div>
+										
+										<div class="col-4">
+											<button class="btn btn-lib-style" type="button"
+												id="edit-record">Редактировать</button>
+										</div>
+										
+										<div class="col">
+											<button class="btn btn-lib-style float-left" type="button"
+												id="delite-record">Удалить</button>
+										</div>
+										</div>
+										</div>
+										
+										<div class="col" id="end-act-record">
+										<div class="row">
+										<div class="col-3">
+											<button class="btn btn-lib-style" type="button"
+												id="cancel-act-record">Отмена</button>
+										</div>
+										
+										<div class="col">
+											<button class="btn btn-lib-style float-left" type="button"
+												id="confirmation-act-record">Сохранить</button>
+										</div>
+										</div>
+										</div>
+										
+									</div>
+
+
 								</div>
 
-								<div class="col-sm-7" id="infoRiderPanel">
+								<div class="col-sm-5" id="infoRiderPanel">
 									<table class="table table-striped">
 										<tbody>
 											<tr class="d-flex">
@@ -189,6 +238,64 @@
 								</div>
 							</div>
 
+						<div class="row">
+								<div class="col-4" id="recordRiderTickedPanel">
+								<div class="row">
+								
+								<div class="col" id="init-act-record">
+								<div class="row">
+								<div class="col">
+											<button class="btn btn-lib-style type="button"
+												id="add-record">Добавить</button>
+										</div>
+								
+								</div>
+								<div class="row">
+								<div class="col">
+											<button class="btn btn-lib-style" type="button"
+												id="edit-record">Редактировать</button>
+										</div>
+								
+								</div>
+								<div class="row">
+								
+								<div class="col">
+											<button class="btn btn-lib-style float-left" type="button"
+												id="delite-record">Удалить</button>
+										</div>
+								
+								</div>
+								
+								</div>
+								</div>
+								
+								<div class="row">
+								
+								<div class="col" id="end-act-record">
+								<div class="row">
+								<div class="col">
+											<button class="btn btn-lib-style" type="button"
+												id="edit-record">Редактировать</button>
+										</div>
+								
+								
+								</div>
+								
+								<div class="row">
+								<div class="col">
+											<button class="btn btn-lib-style float-left" type="button"
+												id="delite-record">Удалить</button>
+										</div>
+								
+								
+								</div>
+								</div>
+								</div>
+								
+								
+
+							</div>
+						
 							<div class="col" id="recordRiderTickedPanel">
 
 								<table class="table  table-hover">
@@ -212,7 +319,7 @@
 								</table>
 
 							</div>
-
+						</div>
 
 						</div>
 
