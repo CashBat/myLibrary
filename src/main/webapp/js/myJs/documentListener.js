@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+$("#filter-table-book-name").keyup(function() {
+filterTableForName();
+})
+
 
 
 	$('.table-filters input').on('input', function() {
@@ -12,10 +16,29 @@ $(document).ready(function() {
 		$(".record-info").removeClass('fixedRowTable');
 		 $(this).addClass('fixedRowTable'); 
 	});
+	
+	$(document).on("click",".book-info", function(){
+		var a = $(this).find('.book-id').first().text();
+		echoInfo(a);
+		$(".book-info").removeClass('fixedRowTable');
+		 $(this).addClass('fixedRowTable'); 
+	});
 
 	title = "Библиотека";
 	$("#titleDesktop").html(title);
 	$(".list-group").bind("click", clickListGroup);
+	
+	
+	
+	$("#list-storage-list").click(function() {
+		var tableBook=$("#books-tabl-info table tbody");
+		cleanTabElement(tableBook);
+		loadBooks(tableBook);
+	});
+	
+	
+	
+	
 
 	$("#search-rider-ticket").click(function() {
 		cleanRentTabElement();
@@ -26,33 +49,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#add-record").click(function() {
-		$("#init-act-record").hide();
-		$("#end-act-record").show();
-
-	});
-
-	$("#edit-record").click(function() {
-		$("#init-act-record").hide();
-		$("#end-act-record").show();
-
-	});
-
-	$("#delite-record").click(function() {
-
-	});
-
-	$("#cancel-act-record").click(function() {
-		$("#init-act-record").show();
-		$("#end-act-record").hide();
-
-	});
-
-	$("#confirmation-act-record").click(function() {
-		$("#init-act-record").show();
-		$("#end-act-record").hide();
-
-	});
+	
 
 });
 
@@ -94,3 +91,33 @@ $(document).ready(function() {
  * найдет
  * 
  */
+ 
+ /*
+ $("#add-record").click(function() {
+		$("#init-act-record").hide();
+		$("#end-act-record").show();
+
+	});
+
+	$("#edit-record").click(function() {
+		$("#init-act-record").hide();
+		$("#end-act-record").show();
+
+	});
+
+	$("#delite-record").click(function() {
+
+	});
+
+	$("#cancel-act-record").click(function() {
+		$("#init-act-record").show();
+		$("#end-act-record").hide();
+
+	});
+
+	$("#confirmation-act-record").click(function() {
+		$("#init-act-record").show();
+		$("#end-act-record").hide();
+
+	});
+	 */

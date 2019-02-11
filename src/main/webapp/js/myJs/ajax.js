@@ -41,6 +41,37 @@ function loadReader(ReadTicketId) {
 	});
 };
 
+function loadBooks(tableBook) {
+	$.ajax({
+		url : "service/main/books",
+		type : "get",
+		success : function(data) {
+
+			$.each(data, function(i, item) {
+				var book = item;
+				var bookCode = book.id;
+				var bookName = book.name;
+				var genre = book.genre;
+				var bookGenre = genre.name;
+				var bookDescription = book.description;
+				var bookAvailability = book.availability;
+
+				tableBook.append(
+						"<tr class='book-info'>" + "<td class='book-id'>"
+								+ bookCode + "</td>" + "<td>"
+								+ bookName + "</td>" + "<td>" + bookGenre
+								+ "</td>" + "<td>" + bookDescription + "</td>"
+								+ "<td>" + bookAvailability + "</td>" + "</tr>")
+			});
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			echoInfo(XMLHttpRequest.responseText);
+
+		}
+	});
+};
+
 function loadRentalInfoBooks(ReadTicketId) {
 
 	$.ajax({

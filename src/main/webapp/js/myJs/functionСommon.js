@@ -45,8 +45,10 @@ function refreshDesktop(event) {
 function cleanRentTabElement(){
 	$("#rent-tablr-info table tbody").find("tr").remove();
 	$("#fioRider").html("...");
-	$("#telRider").html("...");
-	
-	
+	$("#telRider").html("...");	
+}
+
+function cleanTabElement(table){
+	table.find("tr").remove();	
 }
 

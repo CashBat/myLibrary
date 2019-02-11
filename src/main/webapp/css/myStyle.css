@@ -1,9 +1,16 @@
 .record-rent-id{display: none}
+
+
+
 #end-act-record{display: none}
 
 
 
-#list-rent  button{width:120px;}
+#search-rider-ticket {width:120px;}
+#find-book-archive {width:100px;}
+#init-act-record button {width:150px;}
+
+
 
 .fixedRowTable{
   background-color: #cbcfdc;
