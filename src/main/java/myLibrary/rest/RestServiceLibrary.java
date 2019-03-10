@@ -1,25 +1,23 @@
 package myLibrary.rest;
 
-import java.io.File;
-import java.io.IOException;
-
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 
-import com.itextpdf.text.DocumentException;
-
-import myLibrary.rest.exception.NotReaderTicketException;
-import myLibrary.rest.exception.NotRecordsReaderTicketException;
+import myLibrary.entity.RecordReaderTicket;
+import myLibrary.rest.exception.NotFoundReaderTicketException;
+import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
-import myLibrary.service.interfasec.ReportService;
 import myLibrary.service.interfasec.RiderTicketService;
+import myLibrary.service.model.Rental;
+
 
 //создал ветку
 @Path("/main")
@@ -33,8 +31,7 @@ public class RestServiceLibrary {
 	@Inject
 	RiderTicketService serviceRiderTicket;
 	
-	@Inject
-	ReportService serviceReport;
+
 
 	@GET
 	@Path(value = "/genres")
@@ -44,7 +41,7 @@ public class RestServiceLibrary {
 
 	@GET
 	@Path(value = "/books")
-	public Response getAllBooks() throws NotRecordsReaderTicketException {
+	public Response getAllBooks() throws NotFoundRecordsReaderTicketException {
 
 		return Response.ok(serviceGenre.getAllBooks()).build();
 	}
@@ -52,14 +49,14 @@ public class RestServiceLibrary {
 	@GET
 	@Path(value = "/rentalInfoBooks/{idReaderTicked}")
 	public Response getRentalInfoBooksByReaderTickedId(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
-			throws NotRecordsReaderTicketException, NotReaderTicketException {
-		return Response.ok(serviceRiderTicket.getRentalInfoBooksForReaderTicked(idReaderTicked)).build();
+			throws NotFoundRecordsReaderTicketException, NotFoundReaderTicketException {
+		return Response.ok(serviceRiderTicket.getRentalForReaderTicked(idReaderTicked)).build();
 	}
 	
 	@GET
 	@Path(value = "/reader/{idReaderTicked}")
 	public Response getReaderByReaderTickedId(@PathParam(value = "idReaderTicked") Integer idReaderTicked)
-			throws NotRecordsReaderTicketException, NotReaderTicketException {
+			throws NotFoundRecordsReaderTicketException, NotFoundReaderTicketException {
 		return Response.ok(serviceRiderTicket.getReaderByReaderTickedId(idReaderTicked)).build();
 	}
 
@@ -76,34 +73,11 @@ public class RestServiceLibrary {
 	}
 	
 	
-	@GET
-	@Produces("application/zip")
-	@Path(value = "/file")
-	public Response getZip() {
-		
-
-		File filePath = new File("Save");
-	    filePath.mkdir();
-	    File file = new File(filePath + "\\test.zip");
-	    try {
-	        file.createNewFile();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	   // final File f = new File("foo.zip");
-	    ResponseBuilder response = Response.ok((Object) file);
-	    response.header("Content-Disposition", "attachment; filename=" + file.getName());
-	    return response.build();
-	}
-	
-	
-	@GET
-	@Produces("application/pdf")
-	@Path(value = "/filePdf")
-	public Response getPdf() throws DocumentException, IOException {
-	ResponseBuilder response = Response.ok((Object) serviceReport.getPdfReport());
-	response.header("Content-Disposition",
-			"attachment; filename=new-book.pdf");
-	return response.build();}
+	@POST
+	  @Path(value = "rental/add")
+	  public Response addRecordReaderTicket(Rental rentalt) {
+		serviceRiderTicket.addRecordReaderTicket(rentalt);
+	    return Response.ok(rentalt).build();
+	  }
 
 }

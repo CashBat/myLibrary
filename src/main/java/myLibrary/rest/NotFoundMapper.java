@@ -14,4 +14,6 @@ public class NotFoundMapper implements ExceptionMapper<NotFoundException> {
 		return Response.status(404).entity(exception.getMessage()).type("text/plain").build();
 	}
 
+	
+	
 }

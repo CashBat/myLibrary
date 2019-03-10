@@ -22,6 +22,7 @@ public class DefaultBookService implements BookService {
 	@RepBook
 	LibraryRepository<Book> repBook;
 
+
 	@Override
 	public Collection<Genre> getAllGenres() {
 		// return repGenre.query(new BookAvailabilitySpecification());
@@ -40,4 +41,11 @@ public class DefaultBookService implements BookService {
 	public Collection<Book> getBooksOnHand() {
 		return repBook.query(new BookAvailabilitySpecification(false));
 	}
+
+
+
+
+	
+	
+	
 }

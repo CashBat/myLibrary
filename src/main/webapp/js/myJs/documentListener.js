@@ -1,10 +1,40 @@
+
 $(document).ready(function() {
+var isAddBookMode =false;
+var reaaderTicketId=0;
+var addDialog=$('#add-dialog');
+var defaultRentDay=12;
+
+	$('#add-record').click(function() {	
+		if(reaaderTicketId!=0){
+		addDialog.find(".modal-title").text("Новая запись");
+		addDialog.find("#reaader-ticket").text(reaaderTicketId);	
+		addDialog.find("#rent-day").val(defaultRentDay);
+		
+		 
+		
+		addDialog.find("#date-issue").attr("value", getTodayDate());	
+		addDialog.find("#return-date-row").addClass('not-visible-field'); 
+		addDialog.find("#return-date-row").addClass('not-visible-field'); 
+		addDialog.modal('show') ;
+		}	
+	});
+	
+	$('#save-button').click(function() {	
+		fieldValidation();
+	});
+
 
 $("#filter-table-book-name").keyup(function() {
 filterTableForName();
 })
-
-
+		$('#find-book-archive').click(function() {		
+		$('#list-storage-list').click();
+		
+		isAddBookMode=true;
+		$.notify("Выберите книгу для добавления");
+		}
+		);
 
 	$('.table-filters input').on('input', function() {
 		filterTable($(this).parents('table'));
@@ -22,6 +52,12 @@ filterTableForName();
 		echoInfo(a);
 		$(".book-info").removeClass('fixedRowTable');
 		 $(this).addClass('fixedRowTable'); 
+		 if(isAddBookMode){	
+			addDialog.find("#id-book").val(a);
+			isAddBookMode=false;
+			$('#list-rent-list').click(); 
+			addDialog.modal('show');		 
+		 }
 	});
 
 	title = "Библиотека";
@@ -32,8 +68,9 @@ filterTableForName();
 	
 	$("#list-storage-list").click(function() {
 		var tableBook=$("#books-tabl-info table tbody");
-		cleanTabElement(tableBook);
+		//cleanTabElement(tableBook);
 		loadBooks(tableBook);
+		
 	});
 	
 	
@@ -42,7 +79,7 @@ filterTableForName();
 
 	$("#search-rider-ticket").click(function() {
 		cleanRentTabElement();
-		var reaaderTicketId = $("#input-reader-ticket-id").val();
+		reaaderTicketId = $("#input-reader-ticket-id").val();
 		if (reaaderTicketId != null) {
 			loadReader(reaaderTicketId);
 			loadRentalInfoBooks(reaaderTicketId);

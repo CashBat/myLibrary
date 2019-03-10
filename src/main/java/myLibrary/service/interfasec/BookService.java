@@ -14,5 +14,6 @@ public interface BookService {
 	public Collection<Book> getBooksAvailable();
 	
 	public Collection<Book> getBooksOnHand();
+	
 
 }

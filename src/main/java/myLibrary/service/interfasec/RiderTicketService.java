@@ -3,15 +3,16 @@ package myLibrary.service.interfasec;
 import java.util.Collection;
 
 import myLibrary.entity.Reader;
-import myLibrary.rest.exception.NotReaderTicketException;
-import myLibrary.rest.exception.NotRecordsReaderTicketException;
-import myLibrary.service.model.BookRentalInfo;
+import myLibrary.entity.RecordReaderTicket;
+import myLibrary.service.model.Rental;
 
 public interface RiderTicketService {
 
-	public Collection<BookRentalInfo> getRentalInfoBooksForReaderTicked(int idReaderTicked)
-			throws NotRecordsReaderTicketException, NotReaderTicketException;
+	public Collection<Rental> getRentalForReaderTicked(int idReaderTicked)
+			;
 
-	public Reader getReaderByReaderTickedId (int idReaderTicked) throws NotReaderTicketException;
+	public Reader getReaderByReaderTickedId (int idReaderTicked);
+
+	public void addRecordReaderTicket(Rental recordReaderTicket);
 
 }
