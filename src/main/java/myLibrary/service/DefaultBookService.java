@@ -42,8 +42,20 @@ public class DefaultBookService implements BookService {
 		return repBook.query(new BookAvailabilitySpecification(false));
 	}
 
+	public void closeAccess(int bookID) {
+		Book book=repBook.getEntity(bookID);
+		book.setAvailability(false);
+	}
 
+	public void openAccess(int bookID) {
+		Book book=repBook.getEntity(bookID);
+		book.setAvailability(true);
+	}
 
+	@Override
+	public Book getBook(int bookID) {
+		return repBook.getEntity(bookID);
+	}
 
 	
 	

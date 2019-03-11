@@ -1,5 +1,6 @@
 package myLibrary.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -22,6 +23,7 @@ import myLibrary.reposit.annot.RepRecordReaderTicket;
 import myLibrary.rest.exception.NotAvailableBookException;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
+import myLibrary.service.interfasec.BookService;
 import myLibrary.service.interfasec.RiderTicketService;
 import myLibrary.service.model.Rental;
 
@@ -35,6 +37,9 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	@Inject
 	@RepRecordReaderTicket
 	LibraryRepository<RecordReaderTicket> repRecordReaderTicket;
+
+	@Inject
+	BookService bookService;
 
 	public Collection<Rental> getRentalForReaderTicked(int idReaderTicked) {
 
@@ -54,19 +59,19 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		for (RecordReaderTicket record : readerTicket.getRecords()) {
 			rental = new Rental();
 			rental.setIdRecordRiderTicket(record.getId());
-			
-			if(record.getBook()!=null) {
-			rental.setIdBook(record.getBook().getId());
+
+			if (record.getBook() != null) {
+				rental.setIdBook(record.getBook().getId());
 			}
-			
+
 			rental.setQuantityRentDay(record.getQuantityRentDay());
-			
-			if(record.getDateIssue()!=null) {
-			rental.setDateIssue(getDataToString(record.getDateIssue()));
+
+			if (record.getDateIssue() != null) {
+				rental.setDateIssue(getDataToString(record.getDateIssue()));
 			}
-			
-			if(record.getReturnDate()!=null) {
-			rental.setReturnDate(getDataToString(record.getReturnDate()));
+
+			if (record.getReturnDate() != null) {
+				rental.setReturnDate(getDataToString(record.getReturnDate()));
 			}
 			rental.setStatusRental(
 					getStatusRental(record.getDateIssue(), record.getReturnDate(), record.getQuantityRentDay()));
@@ -99,43 +104,42 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	}
 
 	@Override
-	public void addRecordReaderTicket(Rental rental) {	
-		
-		
-		if (rental == null) {
+	public void addRecordReaderTicket(Rental rentalInfo) {
+
+		if (rentalInfo == null) {
 			throw new NullPointerException("null pointer: rental");
 		}
-
 		
-	
-		Book book=recordReaderTicket.getBook();
+		ReaderTicket readerTicket = repReaderTicket.getEntity(rentalInfo.getIdRiderTicket());
+		int idNewRecord =readerTicket.getRecords().size()+1;
+		readerTicket.addRecord(createRecord(idNewRecord, rentalInfo));	
+		bookService.closeAccess(rentalInfo.getIdBook());
 		
-		if (book == null) {
-			throw new NullPointerException("null pointer: book");
-		}
-		
-		if (!book.isAvailability()) {
-			throw new NotAvailableBookException();
-		}
-
-		book.setAvailability(false);
-		
-		
-		
-		if (idReaderTicked==0) {
-			throw new IllegalStateException("Not ready to work. Should not be zero: idReaderTicked");	
-		}
-		
-		ReaderTicket readerTicket = repReaderTicket.getEntity(idReaderTicked);
-		if (readerTicket == null) {
-			throw new NullPointerException("null pointer: readerTicket");
-		}
-		
-		readerTicket.addRecord(recordReaderTicket);	
 	}
-	
-	public String getDataToString(Date date) {
-				return  DateFormatUtils.format(date, "yyyy-MM-dd");
-			}
 
+	private RecordReaderTicket createRecord(int id, Rental rentalInfo) {
+		RecordReaderTicket record = new RecordReaderTicket();
+		record.setId(id);
+	    record.setBook(bookService.getBook(rentalInfo.getIdBook()));
+		record.setQuantityRentDay(rentalInfo.getQuantityRentDay());
+		record.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
+		record.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
+		return record;
+	}
+
+	public String getDataToString(Date date) {
+		return DateFormatUtils.format(date, "yyyy-MM-dd");
+	}
+
+	public Date getStringToData(String dataStr) {
+				Date result = null;
+				try {
+				result = DateUtils.parseDate(dataStr, "yyyy-MM-dd");
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+	
+	
 }

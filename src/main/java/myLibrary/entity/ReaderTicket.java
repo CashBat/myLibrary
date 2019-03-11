@@ -18,7 +18,6 @@ public class ReaderTicket extends AbstractLibraryEntity {
 	public void addRecord(RecordReaderTicket record) {
 		records.add(record);
 		record.setReaderTicket(this);
-
 	}
 
 	public void removeRecord(RecordReaderTicket record) {
