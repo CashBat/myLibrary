@@ -64,17 +64,29 @@ function cleanTabElement(table){
 	table.find("tr").remove();	
 }
 
+
+
 function fieldValidation() {
     	var addDialog = $("#add-dialog");
    
-        var riaderTicket = addDialog.find('input[reaader-ticket-label]');
-		var codeBook = addDialog.find('label[id-book-input]');
-		var rentDay = addDialog.find('input[rent-day-input]');
-      
+        var riaderTicket = addDialog.find('label[name=reaader-ticket-label]');
+		var codeBook = addDialog.find('input[name=id-book-input]');
+		var rentDay = addDialog.find('input[name=rent-day-input]');
+		var dateIssue = addDialog.find('input[name=date-issue-input]');
+
+		
+	      
+		var rental = {
+				idRiderTicket: riaderTicket.text(),
+				idBook: codeBook.val(),
+				quantityRentDay: rentDay.val(),
+				dateIssue: dateIssue.val()
+				}
+		
         var alert = addDialog.find('.alert-danger');
         
         var errCount = 0;
-        if (!riaderTicket.text()) {
+    /*    if (!riaderTicket.text()) {
           alert.append('<div><strong>Внимание!</strong> Отсутствует читательский билет!</div>');
           riaderTicket.focus();
           errCount++;
@@ -88,8 +100,9 @@ function fieldValidation() {
           alert.append('<div><strong>Внимание!</strong> Отсутствует количество арендуемых дней!</div>');
           rentDay.focus();
           errCount++;
-        }
+        }*/
         if (errCount == 0) {
+        	addRental(rental);
           addDialog.modal('hide');
 		  echoInfo("Отправлено");
         } else {

@@ -1,24 +1,19 @@
 
-  function addRental(cl) {
+  function addRental(rental) {
       $.ajax({
             type: "POST",
-            data: JSON.stringify(cl),
-            url: "service/main/clothes/add",
+            data: JSON.stringify(rental),
+            url: "service/main/rental/add",
             contentType: "application/json",
-			dataType: "json",
-            success: function(data) {
-            	var id = data.id || "";
-                var storeId = data.store != null ? data.store.id : "";
-                var sizeId = data.size != null ? data.size.id : "";
-                var typeId = data.type != null ? data.type.id : "";
-                var colorId = data.color != null ? data.color.id : "";
-                var desc = data.shortDescription;
-                var rowStr = generateClothesRow(id, storeId, typeId, sizeId, colorId, desc);
-
-                var store = storeId == 2 ? $shopClothes : $stockClothes;
-                store.append(rowStr);
-                $.notify("Новая одежда добавлена (id: " + id + ")", "success");
-            }
+            
+			success: function(data, statusText, jqXHR) {
+            	loadRentalInfoBooks(rental.idRiderTicket);
+             //   $.notify(jqXHR.origUrl, "success");
+            	$.notify("Запись создана", "success");
+            },
+    		error : function(XMLHttpRequest, textStatus, errorThrown) {
+    			alert(XMLHttpRequest.status);
+    		}
       });
     }
 
@@ -143,16 +138,16 @@ function loadRentalInfoBooks(ReadTicketId) {
 		url : "service/main/rentalInfoBooks/" + ReadTicketId,
 		type : "get",
 		success : function(data) {
-
+			var rentTablrInfo = $("#rent-tablr-info table tbody");
+			cleanTabElement(rentTablrInfo);
 			$.each(data, function(i, item) {
 				var recordRentTictetID = item.idRecordRiderTicket;
 				var bookCode = item.idBook;
 				var dateIssue = item.dateIssue;
 				var quantityRentDay = item.quantityRentDay;
-				var returnDate = item.returnDate;
-				var statusRental = item.statusRental;
-
-				$("#rent-tablr-info table tbody").append(
+				var returnDate = item.returnDate != null ? item.returnDate : "";
+				var statusRental = item.statusRental;				
+				rentTablrInfo.append(
 						
 						
 						"<tr class='record-info' data-toggle='modal'"

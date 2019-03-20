@@ -111,19 +111,18 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		}
 		
 		ReaderTicket readerTicket = repReaderTicket.getEntity(rentalInfo.getIdRiderTicket());
-		int idNewRecord =readerTicket.getRecords().size()+1;
-		readerTicket.addRecord(createRecord(idNewRecord, rentalInfo));	
+		rentalInfo.setIdRecordRiderTicket(readerTicket.getRecords().size()+1);
+		readerTicket.addRecord(createRecord(rentalInfo));	
 		bookService.closeAccess(rentalInfo.getIdBook());
 		
 	}
 
-	private RecordReaderTicket createRecord(int id, Rental rentalInfo) {
+	private RecordReaderTicket createRecord(Rental rentalInfo) {
 		RecordReaderTicket record = new RecordReaderTicket();
-		record.setId(id);
+		record.setId(rentalInfo.getIdRecordRiderTicket());
 	    record.setBook(bookService.getBook(rentalInfo.getIdBook()));
 		record.setQuantityRentDay(rentalInfo.getQuantityRentDay());
 		record.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
-		record.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
 		return record;
 	}
 
