@@ -60,7 +60,7 @@ public class ReaderTicketHashMapRepository extends AbstractHashMapLibraryReposit
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(4));
 
-		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(4), "20.12.2018", 12, null));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(2), "20.12.2018", 12, null));
 
 		add(readerTicket);
 

@@ -40,12 +40,7 @@ filterTableForName();
 		filterTable($(this).parents('table'));
 	});
 
-	$(document).on("click",".record-info", function(){
-		var a = $(this).find('.record-rent-id').first().text();
-		echoInfo(a);
-		$(".record-info").removeClass('fixedRowTable');
-		 $(this).addClass('fixedRowTable'); 
-	});
+
 	
 	$(document).on("click",".book-info", function(){
 		var a = $(this).find('.book-id').first().text();
@@ -85,12 +80,28 @@ filterTableForName();
 			loadRentalInfoBooks(reaaderTicketId);
 		}
 	});
+	
 
 	
+	$(document).on("click",".remove-record", function(){
+		var id = $(this).closest("tr").find('.record-rent-id').first().text();
+		echoInfo(id);
+		removeRecordRenatlInfo(id);
+	});
+
+	//.find('.record-rent-id').first().text()
 
 });
 
 /*
+ * 	$(document).on("click",".record-info", function(){
+		var a = $(this).find('.record-rent-id').first().text();
+		echoInfo(a);
+		$(".record-info").removeClass('fixedRowTable');
+		 $(this).addClass('fixedRowTable'); 
+	});
+ * 
+ * 
  * $('tr').click(function(){ //фиксирует строку в таблице(устанавливает ей цвет,
  * и убирает его), чтобы не забывать с чем работаем $('tr').removeClass();
  * //очищает все строки $(this).addClass('fixedRowTable'); // добовляет класс к

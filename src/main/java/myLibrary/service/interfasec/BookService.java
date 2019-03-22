@@ -15,9 +15,8 @@ public interface BookService {
 	
 	public Collection<Book> getBooksOnHand();
 	
-	public void closeAccess(int bookID) ;
-
-	public void openAccess(int bookID);
-	
 	public Book getBook(int bookID);
+	
+	public void closeAccess(Book bookID) ;
+	public void openAccess(Book bookID) ;
 }

@@ -33,31 +33,30 @@ public class DefaultBookService implements BookService {
 	public Collection<Book> getAllBooks() {
 		return repBook.values();
 	}
-
+	
+	@Override
 	public Collection<Book> getBooksAvailable() {
 		return repBook.query(new BookAvailabilitySpecification(true));
 	}
-
+	
+	@Override
 	public Collection<Book> getBooksOnHand() {
 		return repBook.query(new BookAvailabilitySpecification(false));
 	}
-
-	public void closeAccess(int bookID) {
-		Book book=repBook.getEntity(bookID);
+	
+	@Override
+	public void closeAccess(Book book) {
 		book.setAvailability(false);
 	}
-
-	public void openAccess(int bookID) {
-		Book book=repBook.getEntity(bookID);
+	
+	@Override
+	public void openAccess(Book book) {
 		book.setAvailability(true);
-	}
+	}	
 
 	@Override
 	public Book getBook(int bookID) {
 		return repBook.getEntity(bookID);
 	}
-
-	
-	
 	
 }

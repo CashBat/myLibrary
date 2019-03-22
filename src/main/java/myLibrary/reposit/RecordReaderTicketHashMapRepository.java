@@ -2,6 +2,7 @@ package myLibrary.reposit;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import myLibrary.entity.ReaderTicket;
 import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
 
@@ -51,7 +52,14 @@ public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryR
 
 	}*/
 	
-	
+	@Override
+	public void add(RecordReaderTicket recordReaderTicket) {
+		recordReaderTicket.setId(getID());
+		super.add(recordReaderTicket);
+		ReaderTicket readerTicket = recordReaderTicket.getReaderTicket();
+		readerTicket.addRecord(recordReaderTicket);
+		
+	}
 
 
 }

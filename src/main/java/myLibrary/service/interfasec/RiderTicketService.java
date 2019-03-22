@@ -8,11 +8,14 @@ import myLibrary.service.model.Rental;
 
 public interface RiderTicketService {
 
-	public Collection<Rental> getRentalForReaderTicked(int idReaderTicked)
-			;
+	Collection<Rental> getRentalForReaderTicked(int idReaderTicked);
 
-	public Reader getReaderByReaderTickedId (int idReaderTicked);
+	Reader getReaderByReaderTickedId(int idReaderTicked);
 
-	public void addRecordReaderTicket(Rental recordReaderTicket);
+	void addRecordReaderTicket(Rental recordReaderTicket);
+
+	void saveRecordReaderTicket(Rental rentalInfo);
+
+	void removeRecordReaderTicket(int idRecord);
 
 }
