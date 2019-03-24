@@ -20,8 +20,13 @@ public class ReaderTicket extends AbstractLibraryEntity {
 	}
 
 	public void removeRecord(RecordReaderTicket record) {
-		records.remove(record);
-		record.setReaderTicket(null);
+
+		if (record.getReaderTicket() != null) {
+			record.setReaderTicket(null);
+		} else {			
+			records.remove(record);	
+		}
+
 	}
 
 	public RecordReaderTicket getRecord(int idRecordRiderTicket) {

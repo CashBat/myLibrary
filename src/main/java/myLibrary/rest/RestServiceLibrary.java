@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,13 +13,13 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.core.Response.Status;
 
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.interfasec.RiderTicketService;
-import myLibrary.service.model.Rental;
+import myLibrary.service.model.RentalInfo;
+
 
 
 //создал ветку
@@ -84,8 +85,8 @@ public class RestServiceLibrary {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	  @Path(value = "rental/add")
-	  public Response addRecordReaderTicket(Rental rentalt) {
+	  @Path(value = "/rental/add")
+	  public Response addRecordReaderTicket(RentalInfo rentalt) {
 		serviceRiderTicket.addRecordReaderTicket(rentalt);
 		Response a=Response.created(uriInfo.getAbsolutePathBuilder().path(Integer.toString(rentalt.getIdRecordRiderTicket())).build())
 				 .build();
@@ -99,5 +100,14 @@ public class RestServiceLibrary {
 		serviceRiderTicket.removeRecordReaderTicket(id);
 	    return Response.ok().build();
 	  }
+	
+	  @PUT
+	  @Path(value = "/rental/edit")
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  public Response editRecordReaderTicket(RentalInfo rentalInfo) {
+		  serviceRiderTicket.editRecordReaderTicket(rentalInfo);
+	    return Response.ok().build();
+	  }
+	
 
 }

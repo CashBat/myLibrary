@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class Rental {
+public class RentalInfo {
 	private int idRecordRiderTicket;
 	private int idRiderTicket;
 	private int idBook;

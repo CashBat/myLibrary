@@ -21,7 +21,7 @@ public abstract class AbstractHashMapLibraryRepository<T extends LibraryEntity> 
 		libraryEntits.put(item.getId(), item);
 	}
 
-	public void edit(T item) {
+	public void update(T item) {
 		libraryEntits.replace(item.getId(), item);
 
 	}

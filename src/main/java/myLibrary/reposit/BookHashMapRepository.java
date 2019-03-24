@@ -14,8 +14,6 @@ public class BookHashMapRepository extends AbstractHashMapLibraryRepository<Book
 
 	LibraryRepository<Genre> repositoryGenre;
 
-
-
 	public BookHashMapRepository() {
 	}
 

@@ -26,7 +26,7 @@ import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.rest.exception.RiderTicketProcessingException;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.interfasec.RiderTicketService;
-import myLibrary.service.model.Rental;
+import myLibrary.service.model.RentalInfo;
 
 @Stateless
 public class DefaultRiderTicketService implements RiderTicketService {
@@ -43,7 +43,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	BookService bookService;
 
 	@Override
-	public Collection<Rental> getRentalForReaderTicked(int idReaderTicked) {
+	public Collection<RentalInfo> getRentalForReaderTicked(int idReaderTicked) {
 
 		ReaderTicket readerTicket = repReaderTicket.getEntity(idReaderTicked);
 
@@ -55,11 +55,11 @@ public class DefaultRiderTicketService implements RiderTicketService {
 			throw new NotFoundRecordsReaderTicketException();
 		}
 
-		Rental rental;
-		List<Rental> rentalInfoBooks = new ArrayList<Rental>();
+		RentalInfo rental;
+		List<RentalInfo> rentalInfoBooks = new ArrayList<RentalInfo>();
 
 		for (RecordReaderTicket record : readerTicket.getRecords()) {
-			rental = new Rental();
+			rental = new RentalInfo();
 			rental.setIdRecordRiderTicket(record.getId());
 
 			if (record.getBook() != null) {
@@ -98,9 +98,14 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	@Override
 	public void removeRecordReaderTicket(int idRecord) {
 		try {
-			RecordReaderTicket recordReaderTicket = repRecordReaderTicket.getEntity(idRecord);		
-			recordReaderTicket.getReaderTicket().removeRecord(recordReaderTicket);
+			System.out.println(repRecordReaderTicket.values().size());
+			RecordReaderTicket recordReaderTicket = repRecordReaderTicket.getEntity(idRecord);
+			ReaderTicket readerTicket = recordReaderTicket.getReaderTicket();
+			readerTicket.removeRecord(recordReaderTicket);
+			repReaderTicket.update(readerTicket);
+			System.out.println(repRecordReaderTicket.values().size());
 			bookService.openAccess(recordReaderTicket.getBook());
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RiderTicketProcessingException("Неудалось удалить запись");
@@ -109,7 +114,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	}
 
 	@Override
-	public void saveRecordReaderTicket(Rental rentalInfo) {
+	public void editRecordReaderTicket(RentalInfo rentalInfo) {
 		try {
 
 			if (rentalInfo == null) {
@@ -120,6 +125,11 @@ public class DefaultRiderTicketService implements RiderTicketService {
 			RecordReaderTicket recordReaderTicket = readerTicket.getRecord(rentalInfo.getIdRecordRiderTicket());
 			updateRecord(recordReaderTicket, rentalInfo);
 
+			if (rentalInfo.getReturnDate() != null) {
+				bookService.openAccess(recordReaderTicket.getBook());
+			} else {
+				bookService.closeAccess(recordReaderTicket.getBook());
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,7 +139,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 	}
 
 	@Override
-	public void addRecordReaderTicket(Rental rentalInfo) {
+	public void addRecordReaderTicket(RentalInfo rentalInfo) {
 		try {
 
 			if (rentalInfo == null) {
@@ -148,7 +158,9 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 			bookService.closeAccess(book);
 			ReaderTicket readerTicket = repReaderTicket.getEntity(rentalInfo.getIdRiderTicket());
-			repRecordReaderTicket.add(createRecord(readerTicket, rentalInfo, book));
+			readerTicket.addRecord(createRecord(readerTicket, rentalInfo, book));
+			repReaderTicket.update(readerTicket);
+
 		} catch (NoAccessBookException e) {
 			throw e;
 		} catch (Exception e) {
@@ -157,7 +169,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		}
 
 	}
-	
+
 	private Integer getStatusRental(Date dateIssue, Date returnDate, int quantityRentDay) {
 		int result = 1;
 
@@ -169,7 +181,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		return result;
 	}
 
-	private RecordReaderTicket createRecord(ReaderTicket readerTicket, Rental rentalInfo, Book book) {
+	private RecordReaderTicket createRecord(ReaderTicket readerTicket, RentalInfo rentalInfo, Book book) {
 		RecordReaderTicket record = new RecordReaderTicket();
 		record.setReaderTicket(readerTicket);
 		record.setBook(book);
@@ -183,7 +195,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 		return record;
 	}
 
-	private void updateRecord(RecordReaderTicket recordReaderTicket, Rental rentalInfo) {
+	private void updateRecord(RecordReaderTicket recordReaderTicket, RentalInfo rentalInfo) {
 		recordReaderTicket.setQuantityRentDay(rentalInfo.getQuantityRentDay());
 
 		if (rentalInfo.getDateIssue() == null || rentalInfo.getDateIssue().isEmpty()) {
@@ -192,11 +204,11 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 		recordReaderTicket.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
 
-		if (rentalInfo.getReturnDate() == null || rentalInfo.getReturnDate().isEmpty()) {
-			throw new IllegalStateException("Not ready to work. Null or empty rentalInfo: ReturnDate");
+		if (rentalInfo.getReturnDate() != null || rentalInfo.getReturnDate().isEmpty()) {
+			recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
 		}
 
-		recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
+		
 	}
 
 	private String getDataToString(Date date) {

@@ -11,7 +11,7 @@ public interface LibraryRepository<T extends LibraryEntity> {
 
 	public void add(T item);
 
-	public void edit(T item);
+	public void update(T item);
 
 	public void delite(int id);
 

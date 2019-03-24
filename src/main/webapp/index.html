@@ -166,7 +166,7 @@
 													</div>
 												</td>
 											</tr>
-							
+
 
 										</tbody>
 									</table>
@@ -250,10 +250,11 @@
 									<thead>
 										<tr>
 											<th class="record-rent-id">idRecord</th>
-											<th>Код книги</th>	
+											<th>Код книги</th>
 											<th>Дата выдачи</th>
 											<th>Дни аренды</th>
 											<th>Дата возврата</th>
+											<th class='record-rent-status-rental'>Статус аренды</th>
 											<th>Статус аренды</th>
 											<th>Опции</th>
 										</tr>
@@ -267,7 +268,8 @@
 											<td>dateIssue</td>
 											<td>quantityRentDay</td>
 											<td>dateReturn</td>
-											<td>statusRental</td>
+											<td class='record-rent-status-rental'>statusRental</td>
+											<td>statusRentalText</td>
 											<td>
 												<div class="row">
 													<div class="col image-two">
@@ -285,7 +287,7 @@
 
 													<div class="col image-two">
 
-														<svg class="save-record" width="37" height="37"
+														<svg class="edit-record" width="37" height="37"
 															xmlns="http://www.w3.org/2000/svg">
 
 								<path
@@ -342,17 +344,28 @@
 
 				<div class="modal-header">
 					<h4 class="modal-title"></h4>
+
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
 
 				<div class="modal-body">
 					<div class="row not-visible-field">
+						<div class="col">
+							<label name="action-status-label"></label>
+						</div>
+					</div>
+					<div class="row not-visible-field">
+						<div class="col">
+							<label name="id-record-reader-ticket-label"></label>
+						</div>
+					</div>
+					<div class="row not-visible-field">
 						<div class="col-12 py-1">
 							<label id="reaader-ticket" name="reaader-ticket-label"></label>
 						</div>
 					</div>
-					<div class="row">
+					<div id="book-selection-form" class="row">
 						<div class="col-4 py-1">ВН книги:</div>
 						<div class="col-5 py-1">
 							<input id="id-book" name="id-book-input" type="text"
@@ -362,10 +375,15 @@
 							<button id="find-book-archive" name="find-book-archive-button"
 								type="button" class="btn btn-lib-style float-right"
 								data-dismiss="modal">Архив</button>
-							</select>
 						</div>
 					</div>
-					<div class="row">
+					<div id="book-display-info-form" class="row">
+						<div class="col-4 py-1">ВН книги:</div>
+						<div class="col-8 py-1">
+							<label name="id-book-label"></label>
+						</div>
+					</div>
+					<div id="date-issue-row" class="row">
 						<div class="col-4 py-1">Дата выдачи:</div>
 						<div class="col-8 py-1">
 							<input id="date-issue" name="date-issue-input" type="date"
@@ -391,8 +409,7 @@
 				<div class="alert alert-danger mx-3" role="alert"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-					<button id="save-button" type="button"
-						class="btn btn-success btn-add">Сохранить</button>
+					<button id="save-record" type="button" class="btn btn-lib-style">Сохранить</button>
 				</div>
 			</div>
 		</div>

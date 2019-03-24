@@ -3,18 +3,17 @@ package myLibrary.service.interfasec;
 import java.util.Collection;
 
 import myLibrary.entity.Reader;
-import myLibrary.entity.RecordReaderTicket;
-import myLibrary.service.model.Rental;
+import myLibrary.service.model.RentalInfo;
 
 public interface RiderTicketService {
 
-	Collection<Rental> getRentalForReaderTicked(int idReaderTicked);
+	Collection<RentalInfo> getRentalForReaderTicked(int idReaderTicked);
 
 	Reader getReaderByReaderTickedId(int idReaderTicked);
 
-	void addRecordReaderTicket(Rental recordReaderTicket);
+	void addRecordReaderTicket(RentalInfo recordReaderTicket);
 
-	void saveRecordReaderTicket(Rental rentalInfo);
+	void editRecordReaderTicket(RentalInfo rentalInfo);
 
 	void removeRecordReaderTicket(int idRecord);
 

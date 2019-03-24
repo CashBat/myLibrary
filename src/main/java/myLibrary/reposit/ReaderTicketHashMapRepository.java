@@ -1,6 +1,7 @@
 package myLibrary.reposit;
 
 import java.text.ParseException;
+import java.util.Iterator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -85,6 +86,28 @@ public class ReaderTicketHashMapRepository extends AbstractHashMapLibraryReposit
 		}
 		return record;
 
+	}
+
+	@Override
+	public void update(ReaderTicket readerTicket) {
+
+		Iterator<RecordReaderTicket> it = readerTicket.getRecords().iterator();
+		while (it.hasNext()) {
+			RecordReaderTicket record = it.next();
+
+			if (record.getId() == null) {
+				record.setId(repRecordReaderTicket.getID());
+				repRecordReaderTicket.add(record);
+			}
+
+    			if (record.getReaderTicket() == null) {
+				repRecordReaderTicket.delite(record.getId());
+				it.remove();
+			}
+
+		}
+
+		super.update(readerTicket);
 	}
 
 }

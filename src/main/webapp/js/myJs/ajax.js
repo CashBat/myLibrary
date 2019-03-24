@@ -1,17 +1,11 @@
-
-
-
-function removeRecordRenatlInfo(idRecord) {
+function removeRecordRenatlInfo(reaaderTicketId, idRecord) {
 	$.ajax({
-		type : "POST",
-		data : JSON.stringify(rental),
-		url : "service/main/rental/add",
-		contentType : "application/json",
-
+		type : "DELETE",
+		url : "service/main/rental/remove/" + idRecord,
 		success : function(data, statusText, jqXHR) {
-			loadRentalInfoBooks(rental.idRiderTicket);
+			loadRentalInfoBooks(reaaderTicketId);
 			// $.notify(jqXHR.origUrl, "success");
-			$.notify("Запись создана", "success");
+			$.notify("Запись удалена", "success");
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			echoInfo(XMLHttpRequest.responseText);
@@ -20,15 +14,45 @@ function removeRecordRenatlInfo(idRecord) {
 }
 
 
-function addRental(rental) {
+function saveClothes(cl) {
+    $.ajax({
+          type: "PUT",
+          url: "service/main/clothes/save",
+          data: JSON.stringify(cl),
+          contentType: "application/json",
+          success: function(data) {
+            $.notify("Одежда сохранена (id: " + cl.id + ")", "success");
+          }
+    });
+  }
+
+function editRental(rentalInfo) {
+	$.ajax({
+		type: "PUT",
+		data : JSON.stringify(rentalInfo),
+		url : "service/main/rental/edit",
+		contentType : "application/json",
+
+		success : function(data, statusText, jqXHR) {
+			loadRentalInfoBooks(rentalInfo.idRiderTicket);
+			// $.notify(jqXHR.origUrl, "success");
+			$.notify("Запись обновлена", "success");
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			echoInfo(XMLHttpRequest.responseText);
+		}
+	});
+}
+
+function addRental(rentalInfo) {
 	$.ajax({
 		type : "POST",
-		data : JSON.stringify(rental),
+		data : JSON.stringify(rentalInfo),
 		url : "service/main/rental/add",
 		contentType : "application/json",
 
 		success : function(data, statusText, jqXHR) {
-			loadRentalInfoBooks(rental.idRiderTicket);
+			loadRentalInfoBooks(rentalInfo.idRiderTicket);
 			// $.notify(jqXHR.origUrl, "success");
 			$.notify("Запись создана", "success");
 		},
@@ -141,13 +165,15 @@ function loadBooks(tableBook) {
 
 function loadRentalInfoBooks(ReadTicketId) {
 
+	var rentTablrInfo = $("#rent-tablr-info table tbody");
+	cleanTabElement(rentTablrInfo);
+
 	$
 			.ajax({
 				url : "service/main/rentalInfoBooks/" + ReadTicketId,
 				type : "get",
 				success : function(data) {
-					var rentTablrInfo = $("#rent-tablr-info table tbody");
-					cleanTabElement(rentTablrInfo);
+
 					$
 							.each(
 									data,
@@ -159,6 +185,17 @@ function loadRentalInfoBooks(ReadTicketId) {
 										var returnDate = item.returnDate != null ? item.returnDate
 												: "";
 										var statusRental = item.statusRental;
+										var statusRentalText="";										
+										if (item.statusRental == -1) {
+											statusRentalText="Просрочено";
+										} else {
+											if (item.returnDate == null) {
+												statusRentalText="В прокате";
+											} else{
+												statusRentalText="Возвращено";
+											}
+										}
+	
 										rentTablrInfo
 												.append(
 
@@ -166,20 +203,23 @@ function loadRentalInfoBooks(ReadTicketId) {
 														+ "<td class='record-rent-id'>"
 														+ recordRentTictetID
 														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-rent-book-id'>"
 														+ bookCode
 														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-rent-date-issue'>"
 														+ dateIssue
 														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-quantity-rent-day'>"
 														+ quantityRentDay
 														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-rent-return-date'>"
 														+ returnDate
 														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-rent-status-rental'>"
 														+ statusRental
+														+ "</td>"
+														+ "<td>"
+														+ statusRentalText
 														+ "</td>"
 														+ "<td>"
 														+ "	<div class='row'>"
@@ -198,7 +238,7 @@ function loadRentalInfoBooks(ReadTicketId) {
 
 														+ "	<div class='col image-two'>"
 
-														+ "<svg class='save-record' width='37' height='37'"
+														+ "<svg class='edit-record' width='37' height='37'"
 														+ "	xmlns='http://www.w3.org/2000/svg'>"
 
 														+ "	<path"
