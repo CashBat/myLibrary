@@ -125,7 +125,7 @@ public class DefaultRiderTicketService implements RiderTicketService {
 			RecordReaderTicket recordReaderTicket = readerTicket.getRecord(rentalInfo.getIdRecordRiderTicket());
 			updateRecord(recordReaderTicket, rentalInfo);
 
-			if (rentalInfo.getReturnDate() != null) {
+			if (rentalInfo.getReturnDate() != null && !rentalInfo.getReturnDate().isEmpty()) {
 				bookService.openAccess(recordReaderTicket.getBook());
 			} else {
 				bookService.closeAccess(recordReaderTicket.getBook());
@@ -204,11 +204,16 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 		recordReaderTicket.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
 
-		if (rentalInfo.getReturnDate() != null || rentalInfo.getReturnDate().isEmpty()) {
-			recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
+		if (rentalInfo.getReturnDate() != null) {
+
+			if (!rentalInfo.getReturnDate().isEmpty()) {
+				recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
+			} else {
+				recordReaderTicket.setReturnDate(null);
+			}
+			
 		}
 
-		
 	}
 
 	private String getDataToString(Date date) {

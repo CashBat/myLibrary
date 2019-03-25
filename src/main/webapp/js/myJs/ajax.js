@@ -215,10 +215,7 @@ function loadRentalInfoBooks(ReadTicketId) {
 														+ "<td class='record-rent-return-date'>"
 														+ returnDate
 														+ "</td>"
-														+ "<td class='record-rent-status-rental'>"
-														+ statusRental
-														+ "</td>"
-														+ "<td>"
+														+ "<td class='record-rent-status-rental' data-id="+statusRental+">"
 														+ statusRentalText
 														+ "</td>"
 														+ "<td>"

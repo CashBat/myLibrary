@@ -68,32 +68,48 @@ function saveRecord(rentalInfo) {
 	var addDialog = $("#add-dialog");
 
 	var actionStatus = addDialog.find('label[name=action-status-label]').text();
-	rentalInfo.idBook = addDialog.find('input[name=id-book-input]').val();
-	rentalInfo.quantityRentDay = addDialog.find('input[name=rent-day-input]').val();
-	rentalInfo.dateIssue = addDialog.find('input[name=date-issue-input]').val();
-	rentalInfo.returnDate = addDialog.find('input[name=return-date-input]').val();
-
+	var idBook = addDialog.find('input[name=id-book-input]');
+	var quantityRentDay = addDialog.find('input[name=rent-day-input]');
+	var dateIssue = addDialog.find('input[name=date-issue-input]');
+	var returnDate = addDialog.find('input[name=return-date-input]');
 
 	var alert = addDialog.find('.alert-danger');
+	alert.html("");
 
 	var errCount = 0;
 
-	addDialog.modal('hide');
-	echoInfo("Отправлено");
-	/*
-	 * if (!riaderTicket.text()) { alert.append('<div><strong>Внимание!</strong>
-	 * Отсутствует читательский билет!</div>'); riaderTicket.focus();
-	 * errCount++; } if (!codeBook.val()) { alert.append('<div><strong>Внимание!</strong>
-	 * Отсутствует внутренний номер книги!</div>'); codeBook.focus();
-	 * errCount++; } if (!rentDay.val()) { alert.append('<div><strong>Внимание!</strong>
-	 * Отсутствует количество арендуемых дней!</div>'); rentDay.focus();
-	 * errCount++; }
-	 */
-	/*
-	 * if (errCount == 0) { addRental(rental); addDialog.modal('hide');
-	 * echoInfo("Отправлено"); } else { alert.show(); }
-	 */
+	if (!idBook.val()) {
+		alert
+				.append('<div><strong>Внимание!</strong> Отсутствует внутренний номер книги!</div>');
+		idBook.focus();
+		errCount++;
+	}
+	if (!quantityRentDay.val()) {
+		alert
+				.append('<div><strong>Внимание!</strong> Отсутствует количество арендуемых дней!</div>');
+		quantityRentDay.focus();
+		errCount++;
+	}
+	if (!dateIssue.val()) {
+		alert.append('<div><strong>Внимание!</strong> Отсутствует дата выдачи книги!</div>');
+		dateIssue.focus();
+		errCount++;
+	}
 
+	if (errCount == 0) {
+		rentalInfo.idBook = idBook.val();
+		rentalInfo.quantityRentDay = quantityRentDay.val();
+		rentalInfo.dateIssue = dateIssue.val();
+		rentalInfo.returnDate = returnDate.val();
+		performAction(actionStatus, rentalInfo)
+		addDialog.modal('hide');
+		echoInfo("Отправлено");
+	} else {
+		alert.show();
+	}
+}
+
+function performAction(actionStatus, rentalInfo) {
 	switch (actionStatus) {
 	case '1':
 
@@ -110,7 +126,4 @@ function saveRecord(rentalInfo) {
 
 		break;
 	}
-
 }
-
-

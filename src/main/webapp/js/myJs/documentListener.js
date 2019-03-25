@@ -23,9 +23,10 @@ $(document).ready(function() {
 			addDialog.find("#rent-day").val(defaultRentDay);
 			addDialog.find("#date-issue").attr("value", getTodayDate());
 			addDialog.find("#return-date-row").addClass('not-visible-field');
-			addDialog.find("#book-display-info-form").addClass('not-visible-field');
 			addDialog.find("#date-issue-row").removeClass('not-visible-field');	
 			addDialog.find("#book-selection-form").removeClass('not-visible-field');	
+			addDialog.find('input[name=id-book-input]').prop('disabled',false);
+			addDialog.find('button[name=find-book-archive-button]').prop('disabled', false);
 			addDialog.modal('show');
 			
 		}
@@ -94,27 +95,30 @@ $(document).ready(function() {
 	$(document).on("click", ".edit-record", function() {
 		var selectedTR=$(this).closest("tr")
 		rentalInfo.idRecordRiderTicket = selectedTR.find('.record-rent-id').first().text();
-		rentalInfo.statusRental = selectedTR.find('.record-rent-status-rental').first().text();
+		rentalInfo.statusRental = selectedTR.find('.record-rent-status-rental').first().attr("data-id");
 		var bookId= selectedTR.find('.record-rent-book-id').first().text();
 		var dateIssue = selectedTR.find('.record-rent-date-issue').first().text();
 		var quantityRentDay = selectedTR.find('.record-quantity-rent-day').first().text();
 		var returnDate = selectedTR.find('.record-rent-return-date').first().text();
 		
+	
 		
 		addDialog.find('label[name=action-status-label]').text(2);
 
 		addDialog.find(".modal-title").text("Редактирование записи");	
 
-		addDialog.find('label[name=id-book-label]').text(bookId);
-		
+		//addDialog.find('label[name=id-book-label]').text(bookId);
+		addDialog.find('input[name=id-book-input]').val(bookId);
 	
 		addDialog.find("#rent-day").val(quantityRentDay);
 
 		addDialog.find("#date-issue").attr("value", dateIssue);
 		addDialog.find("#return-date").attr("value", returnDate);
-		addDialog.find("#book-display-info-form").removeClass('not-visible-field');
+		addDialog.find('input[name=id-book-input]').prop('disabled',true);
+		addDialog.find('button[name=find-book-archive-button]').prop('disabled', true);
+	//	addDialog.find("#book-display-info-form").removeClass('not-visible-field');
 		addDialog.find("#return-date-row").removeClass('not-visible-field');	
-		addDialog.find("#book-selection-form").addClass('not-visible-field');
+	//	addDialog.find("#book-selection-form").addClass('not-visible-field');
 		addDialog.modal('show');
 		
 		//removeRecordRenatlInfo(reaaderTicketId,idRecord);
