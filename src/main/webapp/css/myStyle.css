@@ -1,8 +1,8 @@
-#books-tabl-info .row>.col{padding-top:.0rem;padding-bottom:.0rem;text-align:left;}
+#book-tabl-col .row>.col{padding-top:.0rem;padding-bottom:.0rem;text-align:left;}
 
-#infoRiderPanel> .table> tbody > tr > td {text-align:center;}
+#info-rider-row> .table> tbody > tr > td {text-align:center;}
 
-#books-tabl-info .txt-info .title{
+#book-tabl-col .txt-info .title{
 font-size:18pt;
 font-style:italic;
 }
@@ -31,6 +31,7 @@ font-style:italic;
 
 .image-two {
   fill: #00397173;
+
 }
 
 .image-two svg:hover {
@@ -38,16 +39,34 @@ font-style:italic;
   cursor: pointer;
 }
 
+.image-report {
+  fill: #454c65;
+
+}
+
+.image-report svg:hover {
+  cursor: pointer;
+   transform: scale(1.1, 1.1);
+   
+}
+
+#welcome{
+/* padding:70px; */
+font-size:25pt;
+font-style:italic;
+color:#454c65;
+}
+
 
 #search-rider-ticket {width:120px;}
 #find-book-archive {width:100px;}
-#init-act-record button {width:150px;}
+#add-record {width:150px;}
 
 
 
-/*.fixedRowTable{
-  background-color: #cbcfdc;
-}*/
+.fixedRowTable{
+  background-color: #ebecf1;
+}
 
 .h-bs{
  color:white;
@@ -94,6 +113,9 @@ font-style:italic;
 }
 
 
+
+
+
 #sel  {border:1px solid #1b1e29}
 #sel .row .col-10   {border:1px solid #1b1e29}
 
@@ -103,4 +125,9 @@ font-style:italic;
   background-color: #454c65;
   border-color: #454c65;
 }
+
+
+
+
+
 

@@ -13,5 +13,11 @@ public class Book extends AbstractLibraryEntity {
 	private Genre genre;	
 	private String description;
 	private boolean availability;
-
+	
+	@Override
+	public String toString() {
+		return "Book [name=" + name + ", genre=" + genre + ", description=" + description + ", availability="
+				+ availability + "]";
+	}
+	
 }

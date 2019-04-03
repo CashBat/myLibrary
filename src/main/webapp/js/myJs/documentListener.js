@@ -13,18 +13,20 @@ $(document).ready(function() {
 		}
 	
 	
+	
+	
 
 	$('#add-record').click(function() {
 		if (rentalInfo.idRiderTicket != 0) {
 			
-			addDialog.find('label[name=action-status-label]').text(1);
+			addDialog.find('label[name=action-status-label]').text(1); //осуществляется выбор действия(обновить или добавить)
 			addDialog.find(".modal-title").text("Новая запись");
 			//addDialog.find("#reaader-ticket").text(reaaderTicketId);
-			addDialog.find("#rent-day").val(defaultRentDay);
-			addDialog.find("#date-issue").attr("value", getTodayDate());
-			addDialog.find("#return-date-row").addClass('not-visible-field');
-			addDialog.find("#date-issue-row").removeClass('not-visible-field');	
-			addDialog.find("#book-selection-form").removeClass('not-visible-field');	
+			addDialog.find('input[name=rent-day-input]').val(defaultRentDay);
+			addDialog.find('input[name=date-issue-input]').attr("value", getTodayDate());
+			$("#return-date-row").addClass('not-visible-field');
+			$("#date-issue-row").removeClass('not-visible-field');	
+			$("#book-selection-row").removeClass('not-visible-field');	
 			addDialog.find('input[name=id-book-input]').prop('disabled',false);
 			addDialog.find('button[name=find-book-archive-button]').prop('disabled', false);
 			addDialog.modal('show');
@@ -40,8 +42,8 @@ $(document).ready(function() {
 	
 	
 
-	$("#filter-table-book-name").keyup(function() {
-		filterTableForName();
+	$("#filter-table-book-by-name").keyup(function() {
+		filterBookTableForName();
 	})
 	$('#find-book-archive').click(function() {
 		$('#list-storage-list').click();
@@ -54,13 +56,13 @@ $(document).ready(function() {
 		filterTable($(this).parents('table'));
 	});
 
-	$(document).on("click", ".book-info", function() {
-		var a = $(this).find('.book-id').first().text();
-		echoInfo(a);
-		$(".book-info").removeClass('fixedRowTable');
+	$(document).on("click", "#book-table tbody tr", function() {
+		var idBook = $(this).find('.book-id').first().text();
+		echoInfo(idBook);
+		$("#book-table tbody tr").removeClass('fixedRowTable');
 		$(this).addClass('fixedRowTable');
 		if (isAddBookMode) {
-			addDialog.find("#id-book").val(a);
+			addDialog.find('input[name=id-book-input]').val(idBook);
 			isAddBookMode = false;
 			$('#list-rent-list').click();
 			addDialog.modal('show');
@@ -72,15 +74,15 @@ $(document).ready(function() {
 	$(".list-group").bind("click", clickListGroup);
 
 	$("#list-storage-list").click(function() {
-		var tableBook = $("#books-tabl-info table tbody");
-		// cleanTabElement(tableBook);
+		var tableBook = $("#book-table");
+		cleanTabElement(tableBook);
 		loadBooks(tableBook);
 
 	});
 
 	$("#search-rider-ticket").click(function() {
 		cleanRentTabElement();
-		rentalInfo.idRiderTicket = $("#input-reader-ticket-id").val();
+		rentalInfo.idRiderTicket = $("#info-rider-row").find('input[name=reader-ticket-input]').val();
 		if (rentalInfo.idRiderTicket != null) {
 			loadReader(rentalInfo.idRiderTicket);
 			loadRentalInfoBooks(rentalInfo.idRiderTicket);
@@ -110,14 +112,14 @@ $(document).ready(function() {
 		//addDialog.find('label[name=id-book-label]').text(bookId);
 		addDialog.find('input[name=id-book-input]').val(bookId);
 	
-		addDialog.find("#rent-day").val(quantityRentDay);
+		addDialog.find('input[name=rent-day-input]').val(quantityRentDay);
 
-		addDialog.find("#date-issue").attr("value", dateIssue);
-		addDialog.find("#return-date").attr("value", returnDate);
+		addDialog.find('input[name=date-issue-input]').attr("value", dateIssue);
+		addDialog.find('input[name=return-date-input]').attr("value", returnDate);
 		addDialog.find('input[name=id-book-input]').prop('disabled',true);
 		addDialog.find('button[name=find-book-archive-button]').prop('disabled', true);
 	//	addDialog.find("#book-display-info-form").removeClass('not-visible-field');
-		addDialog.find("#return-date-row").removeClass('not-visible-field');	
+		$("#return-date-row").removeClass('not-visible-field');	
 	//	addDialog.find("#book-selection-form").addClass('not-visible-field');
 		addDialog.modal('show');
 		
@@ -126,6 +128,8 @@ $(document).ready(function() {
 
 	// .find('.record-rent-id').first().text()
 
+	//$('#list-storage-list').click();
+	
 });
 
 /*

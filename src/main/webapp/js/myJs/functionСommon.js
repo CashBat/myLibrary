@@ -55,13 +55,13 @@ function refreshDesktop(event) {
 }
 
 function cleanRentTabElement() {
-	$("#rent-tablr-info table tbody").find("tr").remove();
+	$("#rent-tablr-col table tbody").find("tr").remove();
 	$("#fioRider").html("...");
 	$("#telRider").html("...");
 }
 
-function cleanTabElement(table) {
-	table.find("tr").remove();
+function cleanTabElement(tableBody) {
+	tableBody.find("tr").remove();
 }
 
 function saveRecord(rentalInfo) {
@@ -126,4 +126,45 @@ function performAction(actionStatus, rentalInfo) {
 
 		break;
 	}
+	
+	function filterTable($table) {
+	    var $filters = $table.find('.table-filters td');
+	    var $rows = $table.find('.table-data');
+	    $rows.each(function (rowIndex) {
+	        var valid = true;
+	        $(this).find('td').each(function (colIndex) {
+	            if ($filters.eq(colIndex).find('input').val()) {
+	                if ($(this).html().toLowerCase().indexOf(
+	                $filters.eq(colIndex).find('input').val().toLowerCase()) == -1) {
+	                    valid = valid && false;
+	                }
+	            }
+	        });
+	        if (valid === true) {
+	            $(this).css('display', '');
+	        } else {
+	            $(this).css('display', 'none');
+	        }
+	    });
+	}
+
+	function filterBookTableForName() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("filter-table-book-by-name");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("book-table");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    } 
+	  }
+	}
+	
 }

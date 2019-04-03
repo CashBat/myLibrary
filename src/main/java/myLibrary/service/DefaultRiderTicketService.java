@@ -41,7 +41,14 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 	@Inject
 	BookService bookService;
-
+	
+	public DefaultRiderTicketService() {}
+	
+	public DefaultRiderTicketService(LibraryRepository<ReaderTicket> repReaderTicket, BookService bookService) {
+		this.repReaderTicket = repReaderTicket;
+		this.bookService = bookService;
+	}
+	
 	@Override
 	public Collection<RentalInfo> getRentalForReaderTicked(int idReaderTicked) {
 
@@ -82,6 +89,8 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 		return rentalInfoBooks;
 	}
+
+	
 
 	@Override
 	public Reader getReaderByReaderTickedId(int idReaderTicked) {

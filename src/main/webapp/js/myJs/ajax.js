@@ -119,10 +119,11 @@ function loadBooks(tableBook) {
 				var bookGenre = genre.name;
 				var bookDescription = book.description;
 				var bookAvailability = book.availability;
+				
 
-				tableBook.append(
+				tableBook.find('tbody').append(
 
-				"<tr class='book-info'>" +
+				"<tr>" +
 
 				"<td class='book-id not-visible-field'>" + bookCode + "</td>"
 						+ "<td class='not-visible-field'>" + bookName + "</td>"
@@ -165,8 +166,8 @@ function loadBooks(tableBook) {
 
 function loadRentalInfoBooks(ReadTicketId) {
 
-	var rentTablrInfo = $("#rent-tablr-info table tbody");
-	cleanTabElement(rentTablrInfo);
+	var rentTablrInfotBody = $("#rent-tablr-col table tbody");
+	cleanTabElement(rentTablrInfotBody);
 
 	$
 			.ajax({
@@ -196,7 +197,7 @@ function loadRentalInfoBooks(ReadTicketId) {
 											}
 										}
 	
-										rentTablrInfo
+										rentTablrInfotBody
 												.append(
 
 												"<tr class='record-info'>"

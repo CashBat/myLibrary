@@ -39,5 +39,10 @@ public class ReaderTicket extends AbstractLibraryEntity {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return "ReaderTicket [reader=" + reader + ", records=" + records + "]";
+	}
 
 }

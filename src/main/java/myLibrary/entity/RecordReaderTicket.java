@@ -19,6 +19,12 @@ public class RecordReaderTicket extends AbstractLibraryEntity {
 	private int quantityRentDay;
 	private Date returnDate;
 	@JsonIgnore
-	private ReaderTicket readerTicket; 
+	private ReaderTicket readerTicket;
+	@Override
+	public String toString() {
+		return "RecordReaderTicket [book=" + book + ", dateIssue=" + dateIssue + ", quantityRentDay=" + quantityRentDay
+				+ ", returnDate=" + returnDate + ", readerTicket=" + readerTicket + "]";
+	} 
+	
 
 }
