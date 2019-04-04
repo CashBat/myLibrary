@@ -1,4 +1,4 @@
-package myLibrary.entity;
+package myLibrary.reposit.model;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class RecordReaderTicket extends AbstractLibraryEntity {	
+public class RecordReaderTicket extends AbstractLibraryModel {	
 	private Book book;
 	private Date dateIssue;
 	private int quantityRentDay;

@@ -2,7 +2,7 @@ package myLibrary.service.interfasec;
 
 import java.util.Collection;
 
-import myLibrary.entity.Reader;
+import myLibrary.reposit.model.Reader;
 import myLibrary.service.model.RentalInfo;
 
 public interface RiderTicketService {

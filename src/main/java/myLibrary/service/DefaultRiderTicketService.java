@@ -13,13 +13,13 @@ import javax.inject.Inject;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.Reader;
-import myLibrary.entity.ReaderTicket;
-import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.Reader;
+import myLibrary.reposit.model.ReaderTicket;
+import myLibrary.reposit.model.RecordReaderTicket;
 import myLibrary.rest.exception.NoAccessBookException;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;

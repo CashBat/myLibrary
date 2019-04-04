@@ -9,10 +9,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.ReaderTicket;
-import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.ReaderTicketHashMapRepository;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.ReaderTicket;
+import myLibrary.reposit.model.RecordReaderTicket;
 import myLibrary.service.model.RentalInfo;
 
 public class DefaultRiderTicketServiceTest {

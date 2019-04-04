@@ -130,6 +130,8 @@ $(document).ready(function() {
 
 	//$('#list-storage-list').click();
 	
+	
+	loadReport();
 });
 
 /*

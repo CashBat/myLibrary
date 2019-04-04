@@ -4,8 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 
-import myLibrary.entity.Genre;
 import myLibrary.reposit.annot.RepGenre;
+import myLibrary.reposit.model.Genre;
 
 @RequestScoped
 @RepGenre

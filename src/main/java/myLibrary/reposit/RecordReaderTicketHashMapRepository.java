@@ -2,8 +2,8 @@ package myLibrary.reposit;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
+import myLibrary.reposit.model.RecordReaderTicket;
 
 @ApplicationScoped
 @RepRecordReaderTicket

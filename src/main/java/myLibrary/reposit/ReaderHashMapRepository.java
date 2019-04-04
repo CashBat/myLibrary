@@ -4,8 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 
-import myLibrary.entity.Reader;
 import myLibrary.reposit.annot.RepReader;
+import myLibrary.reposit.model.Reader;
 
 @RequestScoped
 @RepReader

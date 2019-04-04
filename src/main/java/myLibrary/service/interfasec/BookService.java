@@ -2,8 +2,8 @@ package myLibrary.service.interfasec;
 
 import java.util.Collection;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.Genre;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.Genre;
 
 public interface BookService {
 

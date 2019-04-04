@@ -2,10 +2,10 @@ package myLibrary.reposit;
 
 import java.util.Collection;
 
-import myLibrary.entity.LibraryEntity;
+import myLibrary.reposit.model.LibraryModel;
 import myLibrary.service.specification.interfase.LibrarySpecification;
 
-public interface LibraryRepository<T extends LibraryEntity> {
+public interface LibraryRepository<T extends LibraryModel> {
 
 	public Collection<T> values();
 

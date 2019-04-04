@@ -3,10 +3,10 @@ package myLibrary.reposit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.Genre;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepGenre;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.Genre;
 
 @ApplicationScoped
 @RepBook

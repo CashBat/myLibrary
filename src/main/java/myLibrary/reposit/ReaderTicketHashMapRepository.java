@@ -8,14 +8,14 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.time.DateUtils;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.Reader;
-import myLibrary.entity.ReaderTicket;
-import myLibrary.entity.RecordReaderTicket;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepReader;
 import myLibrary.reposit.annot.RepReaderTicket;
 import myLibrary.reposit.annot.RepRecordReaderTicket;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.Reader;
+import myLibrary.reposit.model.ReaderTicket;
+import myLibrary.reposit.model.RecordReaderTicket;
 
 @ApplicationScoped
 @RepReaderTicket

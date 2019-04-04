@@ -2,7 +2,7 @@ package myLibrary.service.specification.interfase;
 
 import java.util.Collection;
 
-import myLibrary.entity.Book;
+import myLibrary.reposit.model.Book;
 
 public interface BookSpecification {
 

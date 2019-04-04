@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import myLibrary.entity.Book;
+import myLibrary.reposit.model.Book;
 import myLibrary.rest.exception.TypeMismatchSpecificationException;
 import myLibrary.service.specification.interfase.LibrarySpecification;
 

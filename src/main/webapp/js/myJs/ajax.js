@@ -1,6 +1,6 @@
-function loadReportSelection() {
+function loadReport() {
 	$.ajax({
-		url : "service/main/report-selection",
+		url : "service/main/reports",
 		type : "get",
 		success : function(data) {
 

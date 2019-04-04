@@ -1,6 +1,6 @@
-package myLibrary.entity;
+package myLibrary.reposit.model;
 
-public abstract class AbstractLibraryEntity implements LibraryEntity {
+public abstract class AbstractLibraryModel implements LibraryModel {
 
 	protected Integer id;
 

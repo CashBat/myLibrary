@@ -5,11 +5,11 @@ import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import myLibrary.entity.Book;
-import myLibrary.entity.Genre;
 import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.annot.RepBook;
 import myLibrary.reposit.annot.RepGenre;
+import myLibrary.reposit.model.Book;
+import myLibrary.reposit.model.Genre;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.specification.BookAvailabilitySpecification;
 

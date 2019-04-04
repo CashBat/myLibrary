@@ -1,4 +1,4 @@
-package myLibrary.entity;
+package myLibrary.reposit.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false)
-public class ReaderTicket extends AbstractLibraryEntity {
+public class ReaderTicket extends AbstractLibraryModel {
 	private Reader reader;
 	private List<RecordReaderTicket> records = new ArrayList<RecordReaderTicket>();
 

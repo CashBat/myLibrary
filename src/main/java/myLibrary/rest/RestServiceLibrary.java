@@ -14,6 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import myLibrary.reposit.LibraryRepository;
+import myLibrary.reposit.annot.RepReport;
+import myLibrary.reposit.model.Report;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
@@ -34,6 +37,10 @@ public class RestServiceLibrary {
 
 	@Inject
 	RiderTicketService serviceRiderTicket;
+	
+	@Inject
+	@RepReport
+	LibraryRepository<Report> reportRep;
 	
 /*	@Inject
 	@ReportVersionRep
@@ -114,10 +121,10 @@ public class RestServiceLibrary {
 	  }
 	
 	  
-/*	  @GET
-		@Path(value = "report-selection")
+	  @GET
+		@Path(value = "reports")
 		public Response getReportSelection() {
-			return Response.ok(reportVersionRep.values()).build();
-		}*/
+			return Response.ok(reportRep.values()).build();
+		}
 
 }
