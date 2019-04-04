@@ -1,3 +1,46 @@
+function loadReportSelection() {
+	$.ajax({
+		url : "service/main/report-selection",
+		type : "get",
+		success : function(data) {
+
+			$.each(data, function(i, report) {
+				var id = report.id;
+				var shortName = report.shortName;
+				var fullName = report.fullName;
+				
+				$('#panel-report-element').append(
+						"<div class='col-4'>"
+						+"<div class='row'>"
+						+"<div class='col image-report'data-id="
+						+ id
+						+ ">"
+						+"<svg width='130' height='120' xmlns='http://www.w3.org/2000/svg'>"
+							+"<title>"+fullName+"</title>"
+							+"<path d='m99.56118,58.00262c-1.80936,-2.24912 -4.33307,-4.87587 -7.10186,-7.4005s-5.65489,-4.82125 -8.12386,-6.4695c-4.20271,-2.80725 -6.23889,-3.13262 -7.40689,-3.13262l-40.41071,0c-3.59264,0 -6.51786,2.66237 -6.51786,5.9375l0,64.125c0,3.27275 2.92521,5.9375 6.51786,5.9375l59.96429,0c3.59264,0 6.51786,-2.66475 6.51786,-5.9375l0,-46.3125c0,-1.064 -0.35718,-2.92125 -3.43882,-6.74737l-0.00001,-0.00001zm-10.78836,-4.04225c2.50025,2.27762 4.46343,4.33437 5.913,6.03962l-12.54296,0l0,-11.42612c1.87193,1.3205 4.12971,3.10887 6.62996,5.3865zm9.01289,57.10212c0,0.64362 -0.59704,1.1875 -1.30357,1.1875l-59.96429,0c-0.70654,0 -1.30357,-0.54387 -1.30357,-1.1875l0,-64.125c0,-0.64362 0.59704,-1.1875 1.30357,-1.1875c0,0 40.40811,0 40.41071,0l0,16.625c0,1.311 1.168,2.375 2.60714,2.375l18.25,0l0,46.3125l0.00001,0z' />"
+							+"<path d='m84.75,102.75l-36.5,0c-1.43914,0 -2.60714,-1.064 -2.60714,-2.375s1.168,-2.375 2.60714,-2.375l36.5,0c1.43914,0 2.60714,1.064 2.60714,2.375s-1.168,2.375 -2.60714,2.375z' />"
+							+"<path d='m84.75,93.25l-36.5,0c-1.43914,0 -2.60714,-1.064 -2.60714,-2.375s1.168,-2.375 2.60714,-2.375l36.5,0c1.43914,0 2.60714,1.064 2.60714,2.375s-1.168,2.375 -2.60714,2.375z' />"
+							+"<path d='m84.75,83.75l-36.5,0c-1.43914,0 -2.60714,-1.064 -2.60714,-2.375s1.168,-2.375 2.60714,-2.375l36.5,0c1.43914,0 2.60714,1.064 2.60714,2.375s-1.168,2.375 -2.60714,2.375z'  />"
+						+"<text font-weight='bold' stroke-width='0' x='-174.99038' y='75.06036' id='svg_6' font-size='24' font-family='serif' text-anchor='middle' xml:space='preserve' transform='matrix(0.9112520099499726,0,0,1.0154744502671773,225.9385431189354,-48.63535900007028) '>"+shortName+"</text>"
+						+"</svg>"
+						+"</div>"
+					+"</div>"
+					+"<div class='row'>"
+						+"<div class='col'>"
+							+"<p>"+fullName+"</p>"
+						+"</div>"
+					+"</div>"
+				+"</div>")
+				});
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			echoInfo(XMLHttpRequest.responseText);
+
+		}
+	});
+};
+
+
 function removeRecordRenatlInfo(reaaderTicketId, idRecord) {
 	$.ajax({
 		type : "DELETE",
@@ -13,22 +56,21 @@ function removeRecordRenatlInfo(reaaderTicketId, idRecord) {
 	});
 }
 
-
 function saveClothes(cl) {
-    $.ajax({
-          type: "PUT",
-          url: "service/main/clothes/save",
-          data: JSON.stringify(cl),
-          contentType: "application/json",
-          success: function(data) {
-            $.notify("Одежда сохранена (id: " + cl.id + ")", "success");
-          }
-    });
-  }
+	$.ajax({
+		type : "PUT",
+		url : "service/main/clothes/save",
+		data : JSON.stringify(cl),
+		contentType : "application/json",
+		success : function(data) {
+			$.notify("Одежда сохранена (id: " + cl.id + ")", "success");
+		}
+	});
+}
 
 function editRental(rentalInfo) {
 	$.ajax({
-		type: "PUT",
+		type : "PUT",
 		data : JSON.stringify(rentalInfo),
 		url : "service/main/rental/edit",
 		contentType : "application/json",
@@ -119,35 +161,96 @@ function loadBooks(tableBook) {
 				var bookGenre = genre.name;
 				var bookDescription = book.description;
 				var bookAvailability = book.availability;
-				
 
 				tableBook.find('tbody').append(
 
-				"<tr>" +
+						"<tr>" +
 
-				"<td class='book-id not-visible-field'>" + bookCode + "</td>"
-						+ "<td class='not-visible-field'>" + bookName + "</td>"
-						+ "<td class='txt-info'>" +
+						"<td class='book-id not-visible-field'>" + bookCode
+								+ "</td>" + "<td class='not-visible-field'>"
+								+ bookName + "</td>" + "<td class='txt-info'>" +
 
-						"<div class='row'>" + "<div class='col'>"
-						+ "<div class='row'>" +
+								"<div class='row'>" + "<div class='col'>"
+								+ "<div class='row'>" +
 
-						"<div class='col'>" + "<p class='title'>" + bookCode
-						+ ": " + bookName + "</p>" + "</div>" + "</div>" +
+								"<div class='col'>" + "<p class='title'>"
+								+ bookCode + ": " + bookName + "</p>"
+								+ "</div>" + "</div>" +
 
-						"<div class='row'>" + "<div class='col'>"
-						+ "<p class='specification'>Жанр: " + bookGenre
-						+ "</p>" + "</div>" + "</div>" +
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='specification'>Жанр: " + bookGenre
+								+ "</p>" + "</div>" + "</div>" +
 
-						"<div class='row'>" + "<div class='col'>"
-						+ "<p class='summary'>" + bookDescription + "</p>"
-						+ "</div>" + "</div>" +
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='summary'>" + bookDescription
+								+ "</p>" + "</div>" + "</div>" +
 
-						"<div class='row'>" + "<div class='col'>"
-						+ "<p class='status'>Наличие: " + bookAvailability
-						+ "</p>" + "</div>" + "</div>" + "<p></p>" +
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='status'>Наличие: "
+								+ bookAvailability + "</p>" + "</div>"
+								+ "</div>" + "<p></p>" +
 
-						"</div>" + "</div>" + "</td>" + "</tr>"
+								"</div>" + "</div>" + "</td>" + "</tr>"
+				/*
+				 * "<tr class='book-info'>" + "<td class='book-id'>" +
+				 * bookCode + "</td>" + "<td>" + bookName + "</td>" + "<td>" +
+				 * bookGenre + "</td>" + "<td>" + bookDescription + "</td>" + "<td>" +
+				 * bookAvailability + "</td>" + "</tr>"
+				 */)
+			});
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			echoInfo(XMLHttpRequest.responseText);
+
+		}
+	});
+};
+
+function loadBooks(tableBook) {
+	$.ajax({
+		url : "service/main/books",
+		type : "get",
+		success : function(data) {
+
+			$.each(data, function(i, item) {
+				var book = item;
+				var bookCode = book.id;
+				var bookName = book.name;
+				var genre = book.genre;
+				var bookGenre = genre.name;
+				var bookDescription = book.description;
+				var bookAvailability = book.availability;
+
+				tableBook.find('tbody').append(
+
+						"<tr>" +
+
+						"<td class='book-id not-visible-field'>" + bookCode
+								+ "</td>" + "<td class='not-visible-field'>"
+								+ bookName + "</td>" + "<td class='txt-info'>" +
+
+								"<div class='row'>" + "<div class='col'>"
+								+ "<div class='row'>" +
+
+								"<div class='col'>" + "<p class='title'>"
+								+ bookCode + ": " + bookName + "</p>"
+								+ "</div>" + "</div>" +
+
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='specification'>Жанр: " + bookGenre
+								+ "</p>" + "</div>" + "</div>" +
+
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='summary'>" + bookDescription
+								+ "</p>" + "</div>" + "</div>" +
+
+								"<div class='row'>" + "<div class='col'>"
+								+ "<p class='status'>Наличие: "
+								+ bookAvailability + "</p>" + "</div>"
+								+ "</div>" + "<p></p>" +
+
+								"</div>" + "</div>" + "</td>" + "</tr>"
 				/*
 				 * "<tr class='book-info'>" + "<td class='book-id'>" +
 				 * bookCode + "</td>" + "<td>" + bookName + "</td>" + "<td>" +
@@ -186,17 +289,17 @@ function loadRentalInfoBooks(ReadTicketId) {
 										var returnDate = item.returnDate != null ? item.returnDate
 												: "";
 										var statusRental = item.statusRental;
-										var statusRentalText="";										
+										var statusRentalText = "";
 										if (item.statusRental == -1) {
-											statusRentalText="Просрочено";
+											statusRentalText = "Просрочено";
 										} else {
 											if (item.returnDate == null) {
-												statusRentalText="В прокате";
-											} else{
-												statusRentalText="Возвращено";
+												statusRentalText = "В прокате";
+											} else {
+												statusRentalText = "Возвращено";
 											}
 										}
-	
+
 										rentTablrInfotBody
 												.append(
 
@@ -216,7 +319,9 @@ function loadRentalInfoBooks(ReadTicketId) {
 														+ "<td class='record-rent-return-date'>"
 														+ returnDate
 														+ "</td>"
-														+ "<td class='record-rent-status-rental' data-id="+statusRental+">"
+														+ "<td class='record-rent-status-rental' data-id="
+														+ statusRental
+														+ ">"
 														+ statusRentalText
 														+ "</td>"
 														+ "<td>"

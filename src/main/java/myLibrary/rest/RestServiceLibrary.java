@@ -35,6 +35,10 @@ public class RestServiceLibrary {
 	@Inject
 	RiderTicketService serviceRiderTicket;
 	
+/*	@Inject
+	@ReportVersionRep
+	InformationRepository<ReportVersion> reportVersionRep;
+	*/
 
 
 	@GET
@@ -109,5 +113,11 @@ public class RestServiceLibrary {
 	    return Response.ok().build();
 	  }
 	
+	  
+/*	  @GET
+		@Path(value = "report-selection")
+		public Response getReportSelection() {
+			return Response.ok(reportVersionRep.values()).build();
+		}*/
 
 }
