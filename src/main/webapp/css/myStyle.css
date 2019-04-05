@@ -1,8 +1,17 @@
 #book-tabl-col .row>.col{padding-top:.0rem;padding-bottom:.0rem;text-align:left;}
 
+  #panel-report-element .row>.col {padding-top:.0rem;} 
+ 
+p {
+    margin: 0;
+    padding: 0;
+} 
+
+
+
 #info-rider-row> .table> tbody > tr > td {text-align:center;}
 
-#book-tabl-col .txt-info .title{
+.title{
 font-size:18pt;
 font-style:italic;
 }
@@ -10,14 +19,6 @@ font-style:italic;
 .table > tbody > tr > td {
      vertical-align: middle;
 }
-
-
-
-
-
-
-
-
 
 
 .record-rent-id{display: none}

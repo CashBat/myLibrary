@@ -122,8 +122,9 @@ public class RestServiceLibrary {
 	
 	  
 	  @GET
+	  @Produces(MediaType.APPLICATION_JSON)//возвращает объект в формате json, без этого выдаст ошибку :не удалось найти тело для объекта хешмеп (Could not find MessageBodyWriter for response object of type: java.util.HashMap$Values of media type: application/signed-exchange;v=b3)
 		@Path(value = "reports")
-		public Response getReportSelection() {
+		public Response getReports() {
 			return Response.ok(reportRep.values()).build();
 		}
 
