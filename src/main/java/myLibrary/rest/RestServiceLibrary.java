@@ -9,19 +9,27 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.UriInfo;
+
 
 import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.annot.RepReport;
 import myLibrary.reposit.model.Report;
+import myLibrary.rest.exception.JasperExportReportException;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
+import myLibrary.service.interfasec.ReportService;
 import myLibrary.service.interfasec.RiderTicketService;
 import myLibrary.service.model.RentalInfo;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 
 
 
@@ -41,6 +49,9 @@ public class RestServiceLibrary {
 	@Inject
 	@RepReport
 	LibraryRepository<Report> reportRep;
+	
+	@Inject
+	ReportService reportServise;
 	
 /*	@Inject
 	@ReportVersionRep
@@ -127,5 +138,23 @@ public class RestServiceLibrary {
 		public Response getReports() {
 			return Response.ok(reportRep.values()).build();
 		}
+	  
+	  
+	  @GET
+		@Produces("application/pdf")
+		@Path(value = "/filePdf")
+		public Response getPdf(@QueryParam("idReport") int idReport)  {
+			ResponseBuilder response = Response.ok((StreamingOutput) (output) -> {
+						try {
+							JasperExportManager.exportReportToPdfStream(
+									reportServise.getReport(idReport), output);
+						} catch (JRException e) {
+							throw new JasperExportReportException();
+						}	
+			});
+			response.header("Content-Disposition", "attachment; filename="+"sdsd"+".pdf");
+			return response.build();
+		}
+	  
 
 }

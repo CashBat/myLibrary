@@ -1,19 +1,19 @@
 package myLibrary.reposit;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 
 import myLibrary.reposit.annot.RepReport;
 import myLibrary.reposit.model.Report;
 
-@RequestScoped
+@ApplicationScoped
 @RepReport
 public class ReportHashMapRepository extends AbstractHashMapLibraryRepository<Report> {
 
 	@PostConstruct
 	private void initGenreRep() {
 		
-		add(createReport("Задолженность","Книги с истекшим сроком аренды + информация об арендаторах"));	
+		add(createReport("Задолженность","Учет должников, персональные данные, списки книг"));	
 		add(createReport("Архив","Полный реестр книг, числящихся в библиотеке (в том числе и «на руках»)"));	
 		add(createReport("Топ","Книги которые брали больше двух раз за текущий год"));
 		add(createReport("Фейк1","Фейковый отчет номер 1"));

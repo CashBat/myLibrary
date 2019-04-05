@@ -2,12 +2,11 @@ package myLibrary.reposit;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 
 import myLibrary.reposit.annot.RepReader;
 import myLibrary.reposit.model.Reader;
 
-@RequestScoped
+@ApplicationScoped
 @RepReader
 public class ReaderHashMapRepository extends AbstractHashMapLibraryRepository<Reader> {
 
