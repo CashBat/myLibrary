@@ -15,6 +15,9 @@ $(document).ready(function() {
 	
 	
 	
+	$(document).on("click", ".image-report", function() {
+		loadPdf($(this).attr("data-id"));	
+	});
 
 	$('#add-record').click(function() {
 		if (rentalInfo.idRiderTicket != 0) {
@@ -96,7 +99,7 @@ $(document).ready(function() {
 	
 	$(document).on("click", ".edit-record", function() {
 		var selectedTR=$(this).closest("tr")
-		rentalInfo.idRecordRiderTicket = selectedTR.find('.record-rent-id').first().text();
+		rentalInfo.idRecordRiderTicket = selectedTR.find('.record-rent-id').Dtext();
 		rentalInfo.statusRental = selectedTR.find('.record-rent-status-rental').first().attr("data-id");
 		var bookId= selectedTR.find('.record-rent-book-id').first().text();
 		var dateIssue = selectedTR.find('.record-rent-date-issue').first().text();
@@ -131,7 +134,7 @@ $(document).ready(function() {
 	//$('#list-storage-list').click();
 	
 	
-	loadReport();
+	loadReportOptions();
 });
 
 /*

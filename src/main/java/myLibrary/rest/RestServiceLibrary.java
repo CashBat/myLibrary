@@ -19,14 +19,14 @@ import javax.ws.rs.core.UriInfo;
 
 
 import myLibrary.reposit.LibraryRepository;
-import myLibrary.reposit.annot.RepReport;
-import myLibrary.reposit.model.Report;
+import myLibrary.reposit.model.JasperPrintReport;
+import myLibrary.reposit.qualifier.RepReport;
 import myLibrary.rest.exception.JasperExportReportException;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.interfasec.ReportService;
-import myLibrary.service.interfasec.RiderTicketService;
+import myLibrary.service.interfasec.ReaderTicketService;
 import myLibrary.service.model.RentalInfo;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -44,11 +44,11 @@ public class RestServiceLibrary {
 	BookService serviceGenre;
 
 	@Inject
-	RiderTicketService serviceRiderTicket;
+	ReaderTicketService serviceRiderTicket;
 	
 	@Inject
 	@RepReport
-	LibraryRepository<Report> reportRep;
+	LibraryRepository<JasperPrintReport> reportRep;
 	
 	@Inject
 	ReportService reportServise;
@@ -143,16 +143,18 @@ public class RestServiceLibrary {
 	  @GET
 		@Produces("application/pdf")
 		@Path(value = "/filePdf")
-		public Response getPdf(@QueryParam("idReport") int idReport)  {
+		public Response getPdf(@QueryParam("idReport") int idReport)  {  
+		 JasperPrintReport jasperPrintReport= reportServise.getJasperPrintReport(idReport);
+		 
 			ResponseBuilder response = Response.ok((StreamingOutput) (output) -> {
 						try {
 							JasperExportManager.exportReportToPdfStream(
-									reportServise.getReport(idReport), output);
+									jasperPrintReport.getJasperPrint(), output);
 						} catch (JRException e) {
 							throw new JasperExportReportException();
 						}	
 			});
-			response.header("Content-Disposition", "attachment; filename="+"sdsd"+".pdf");
+			response.header("Content-Disposition", "attachment; filename="+jasperPrintReport.getReportName()+".pdf");
 			return response.build();
 		}
 	  

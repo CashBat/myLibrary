@@ -1,4 +1,4 @@
-package myLibrary.reposit.annot;
+package myLibrary.reposit.qualifier;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,6 +10,6 @@ import javax.inject.Qualifier;
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,ElementType.TYPE})
-public @interface RepBook {
+public @interface anotTest1 {
 
 }

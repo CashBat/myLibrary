@@ -1,4 +1,50 @@
-function loadReport() {
+function loadPdf(idReport) {	
+	var url2 ="service/main/filePdf"+"?idReport=" + idReport;
+	var url = location.href+url2;	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4) {
+	        if(xhr.status == 200) {
+	            console.log(typeof xhr.response); // should be a blob
+	        } else if(xhr.responseText != "") {
+	            console.log(xhr.responseText);
+	        }
+	    } else if(xhr.readyState == 2) {
+	        if(xhr.status == 200) {
+	        	xhr.responseType = "blob";
+	        } else {
+	        	xhr.responseType = "text";
+	        }
+	    }
+};
+	xhr.open('GET', url);
+	xhr.onload = function () {
+		{			
+		    if(xhr.status == 200) {
+		    	var myHeader = xhr.getResponseHeader("filename");
+		    	 var blob = xhr.response;
+			        var link=document.createElement('a');
+			        link.href=window.URL.createObjectURL(blob);
+			        link.download=getFileName(xhr);
+			        document.body.appendChild(link);
+			        link.click();
+			        document.body.removeChild(link);
+			        console.log(xhr.getResponseHeader("Content-Type"));
+			        console.log(xhr.getResponseHeader("Content-Disposition"));
+		    } else
+		    	{
+		    	var textError="Код: "+xhr.status+"Сообщение: "+xhr.responseText;
+		    	echoInfo(textError);  	
+		    	}		    
+		}
+		
+	}
+	xhr.send();
+
+}
+
+
+function loadReportOptions() {
 	$.ajax({
 		url : "service/main/reports",
 		type : "get",

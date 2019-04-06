@@ -3,12 +3,12 @@ package myLibrary.reposit;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.reposit.annot.RepReader;
 import myLibrary.reposit.model.Reader;
+import myLibrary.reposit.qualifier.RepReader;
 
 @ApplicationScoped
 @RepReader
-public class ReaderHashMapRepository extends AbstractHashMapLibraryRepository<Reader> {
+public class ReaderLibraryRepository extends AbstractLibraryRepository<Reader> {
 
 	@PostConstruct
 	private void initReaderRep() {

@@ -6,10 +6,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import myLibrary.reposit.LibraryRepository;
-import myLibrary.reposit.annot.RepBook;
-import myLibrary.reposit.annot.RepGenre;
 import myLibrary.reposit.model.Book;
 import myLibrary.reposit.model.Genre;
+import myLibrary.reposit.qualifier.RepBook;
+import myLibrary.reposit.qualifier.RepGenre;
 import myLibrary.service.interfasec.BookService;
 import myLibrary.service.specification.BookAvailabilitySpecification;
 

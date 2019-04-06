@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import myLibrary.reposit.model.LibraryModel;
 import myLibrary.service.specification.interfase.LibrarySpecification;
 
-public abstract class AbstractHashMapLibraryRepository<T extends LibraryModel> implements LibraryRepository<T> {
+public abstract class AbstractLibraryRepository<T extends LibraryModel> implements LibraryRepository<T> {
 
 	private AtomicInteger ids = new AtomicInteger();
 	private final HashMap<Integer, T> libraryEntits = new HashMap<Integer, T>();

@@ -8,28 +8,28 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.time.DateUtils;
 
-import myLibrary.reposit.annot.RepBook;
-import myLibrary.reposit.annot.RepReader;
-import myLibrary.reposit.annot.RepReaderTicket;
-import myLibrary.reposit.annot.RepRecordReaderTicket;
 import myLibrary.reposit.model.Book;
 import myLibrary.reposit.model.Reader;
 import myLibrary.reposit.model.ReaderTicket;
 import myLibrary.reposit.model.RecordReaderTicket;
+import myLibrary.reposit.qualifier.RepBook;
+import myLibrary.reposit.qualifier.RepReader;
+import myLibrary.reposit.qualifier.RepReaderTicket;
+import myLibrary.reposit.qualifier.RepRecordReaderTicket;
 
 @ApplicationScoped
 @RepReaderTicket
-public class ReaderTicketHashMapRepository extends AbstractHashMapLibraryRepository<ReaderTicket> {
+public class ReaderTicketLibraryRepository extends AbstractLibraryRepository<ReaderTicket> {
 
 	LibraryRepository<Reader> repReader;
 	LibraryRepository<RecordReaderTicket> repRecordReaderTicket;
 	LibraryRepository<Book> repBook;
 
-	public ReaderTicketHashMapRepository() {
+	public ReaderTicketLibraryRepository() {
 	}
 
 	@Inject
-	public ReaderTicketHashMapRepository(@RepBook LibraryRepository<Book> repBook,
+	public ReaderTicketLibraryRepository(@RepBook LibraryRepository<Book> repBook,
 			@RepReader LibraryRepository<Reader> repReader,
 			@RepRecordReaderTicket LibraryRepository<RecordReaderTicket> repRecordReaderTicket) {
 		this.repBook = repBook;

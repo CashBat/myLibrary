@@ -14,22 +14,22 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import myLibrary.reposit.LibraryRepository;
-import myLibrary.reposit.annot.RepReaderTicket;
-import myLibrary.reposit.annot.RepRecordReaderTicket;
 import myLibrary.reposit.model.Book;
 import myLibrary.reposit.model.Reader;
 import myLibrary.reposit.model.ReaderTicket;
 import myLibrary.reposit.model.RecordReaderTicket;
+import myLibrary.reposit.qualifier.RepReaderTicket;
+import myLibrary.reposit.qualifier.RepRecordReaderTicket;
 import myLibrary.rest.exception.NoAccessBookException;
 import myLibrary.rest.exception.NotFoundReaderTicketException;
 import myLibrary.rest.exception.NotFoundRecordsReaderTicketException;
 import myLibrary.rest.exception.RiderTicketProcessingException;
 import myLibrary.service.interfasec.BookService;
-import myLibrary.service.interfasec.RiderTicketService;
+import myLibrary.service.interfasec.ReaderTicketService;
 import myLibrary.service.model.RentalInfo;
 
 @Stateless
-public class DefaultRiderTicketService implements RiderTicketService {
+public class DefaultReaderTicketService implements ReaderTicketService {
 
 	@Inject
 	@RepReaderTicket
@@ -41,13 +41,78 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 	@Inject
 	BookService bookService;
-	
-	public DefaultRiderTicketService() {}
-	
-	public DefaultRiderTicketService(LibraryRepository<ReaderTicket> repReaderTicket, BookService bookService) {
+
+	final static int STATUSDEBT = -1;
+
+	public DefaultReaderTicketService() {
+	}
+
+	public DefaultReaderTicketService(LibraryRepository<ReaderTicket> repReaderTicket, BookService bookService) {
 		this.repReaderTicket = repReaderTicket;
 		this.bookService = bookService;
 	}
+
+	
+	private String getDataToString(Date date) {
+		return DateFormatUtils.format(date, "yyyy-MM-dd");
+	}
+
+	private Date getStringToData(String dataStr) {
+		Date result = null;
+		try {
+			result = DateUtils.parseDate(dataStr, "yyyy-MM-dd");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private Integer getStatusRental(Date dateIssue, Date returnDate, int quantityRentDay) {
+		int result = 1;
+
+		if (returnDate == null) {
+			result = DateUtils.truncatedCompareTo(DateUtils.addDays(dateIssue, quantityRentDay), new Date(),
+					Calendar.DAY_OF_MONTH);
+		}
+
+		return result;
+	}
+
+	private RecordReaderTicket createRecord(ReaderTicket readerTicket, RentalInfo rentalInfo, Book book) {
+		RecordReaderTicket record = new RecordReaderTicket();
+		record.setReaderTicket(readerTicket);
+		record.setBook(book);
+		record.setQuantityRentDay(rentalInfo.getQuantityRentDay());
+
+		if (rentalInfo.getDateIssue() == null || rentalInfo.getDateIssue().isEmpty()) {
+			throw new IllegalStateException("Not ready to work. Null or empty rentalInfo: DateIssue");
+		}
+
+		record.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
+		return record;
+	}
+
+	private void updateRecord(RecordReaderTicket recordReaderTicket, RentalInfo rentalInfo) {
+		recordReaderTicket.setQuantityRentDay(rentalInfo.getQuantityRentDay());
+
+		if (rentalInfo.getDateIssue() == null || rentalInfo.getDateIssue().isEmpty()) {
+			throw new IllegalStateException("Not ready to work. Null or empty rentalInfo: DateIssue");
+		}
+
+		recordReaderTicket.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
+
+		if (rentalInfo.getReturnDate() != null) {
+
+			if (!rentalInfo.getReturnDate().isEmpty()) {
+				recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
+			} else {
+				recordReaderTicket.setReturnDate(null);
+			}
+
+		}
+
+	}
+	
 	
 	@Override
 	public Collection<RentalInfo> getRentalForReaderTicked(int idReaderTicked) {
@@ -89,8 +154,6 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 		return rentalInfoBooks;
 	}
-
-	
 
 	@Override
 	public Reader getReaderByReaderTickedId(int idReaderTicked) {
@@ -179,64 +242,31 @@ public class DefaultRiderTicketService implements RiderTicketService {
 
 	}
 
-	private Integer getStatusRental(Date dateIssue, Date returnDate, int quantityRentDay) {
-		int result = 1;
-
-		if (returnDate == null) {
-			result = DateUtils.truncatedCompareTo(DateUtils.addDays(dateIssue, quantityRentDay), new Date(),
-					Calendar.DAY_OF_MONTH);
+	
+	@Override
+	public List<RecordReaderTicket> getDebtBookRecords(ReaderTicket readerTicket) {
+		int statusRental;
+		List<RecordReaderTicket> debtBookRecords = new ArrayList<RecordReaderTicket>();
+		if (readerTicket == null) {
+			throw new NotFoundReaderTicketException();
 		}
-
-		return result;
-	}
-
-	private RecordReaderTicket createRecord(ReaderTicket readerTicket, RentalInfo rentalInfo, Book book) {
-		RecordReaderTicket record = new RecordReaderTicket();
-		record.setReaderTicket(readerTicket);
-		record.setBook(book);
-		record.setQuantityRentDay(rentalInfo.getQuantityRentDay());
-
-		if (rentalInfo.getDateIssue() == null || rentalInfo.getDateIssue().isEmpty()) {
-			throw new IllegalStateException("Not ready to work. Null or empty rentalInfo: DateIssue");
-		}
-
-		record.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
-		return record;
-	}
-
-	private void updateRecord(RecordReaderTicket recordReaderTicket, RentalInfo rentalInfo) {
-		recordReaderTicket.setQuantityRentDay(rentalInfo.getQuantityRentDay());
-
-		if (rentalInfo.getDateIssue() == null || rentalInfo.getDateIssue().isEmpty()) {
-			throw new IllegalStateException("Not ready to work. Null or empty rentalInfo: DateIssue");
-		}
-
-		recordReaderTicket.setDateIssue(getStringToData(rentalInfo.getDateIssue()));
-
-		if (rentalInfo.getReturnDate() != null) {
-
-			if (!rentalInfo.getReturnDate().isEmpty()) {
-				recordReaderTicket.setReturnDate(getStringToData(rentalInfo.getReturnDate()));
-			} else {
-				recordReaderTicket.setReturnDate(null);
+		for (RecordReaderTicket recordRiderTicket : readerTicket.getRecords()) {
+			statusRental = getStatusRental(recordRiderTicket.getDateIssue(), recordRiderTicket.getReturnDate(),
+					recordRiderTicket.getQuantityRentDay());
+			if (statusRental == STATUSDEBT) {
+				debtBookRecords.add(recordRiderTicket);
 			}
-			
 		}
-
+		return debtBookRecords;
+	}
+	
+	@Override
+	public Collection<ReaderTicket> getReaderTickets() {
+		return repReaderTicket.values();
 	}
 
-	private String getDataToString(Date date) {
-		return DateFormatUtils.format(date, "yyyy-MM-dd");
-	}
 
-	private Date getStringToData(String dataStr) {
-		Date result = null;
-		try {
-			result = DateUtils.parseDate(dataStr, "yyyy-MM-dd");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+
+
 
 }

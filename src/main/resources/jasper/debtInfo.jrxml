@@ -41,7 +41,7 @@
 		<field name="dateIssue" class="java.lang.String"/>
 		<field name="dayOverdue" class="java.lang.String"/>
 		<field name="debtorFIO" class="java.lang.String"/>
-		<field name="debtorTell" class="java.lang.String"/>
+		<field name="debtorTel" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="dateCreateReport" class="java.lang.String"/>
 	<parameter name="dataTable" class="net.sf.jasperreports.engine.JRDataSource">
@@ -323,7 +323,7 @@
 								<textElement textAlignment="Right" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{debtorTell}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{debtorTel}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

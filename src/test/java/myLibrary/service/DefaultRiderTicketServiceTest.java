@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import myLibrary.reposit.ReaderTicketHashMapRepository;
+import myLibrary.reposit.ReaderTicketLibraryRepository;
 import myLibrary.reposit.model.Book;
 import myLibrary.reposit.model.ReaderTicket;
 import myLibrary.reposit.model.RecordReaderTicket;
@@ -23,9 +23,9 @@ public class DefaultRiderTicketServiceTest {
 		ReaderTicket actual = createActualRT();
 		ReaderTicket expected = createExpectedRT();
 
-		ReaderTicketHashMapRepository rthrMock = Mockito.mock(ReaderTicketHashMapRepository.class);
+		ReaderTicketLibraryRepository rthrMock = Mockito.mock(ReaderTicketLibraryRepository.class);
 		Mockito.when(rthrMock.getEntity(rentalInfo.getIdRiderTicket())).thenReturn(actual);
-		DefaultRiderTicketService bean = new DefaultRiderTicketService(rthrMock, new DefaultBookService());
+		DefaultReaderTicketService bean = new DefaultReaderTicketService(rthrMock, new DefaultBookService());
 		bean.editRecordReaderTicket(rentalInfo);
 		
 		Assert.assertEquals(actual, expected);

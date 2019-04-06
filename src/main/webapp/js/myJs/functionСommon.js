@@ -1,6 +1,12 @@
 var id = 0;
 var $listBoks = $('#sel2');
 
+function getFileName(xhr) {
+	var cd = xhr.getResponseHeader('Content-Disposition');
+	var filename = cd && cd.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1];
+	return filename;
+}
+
 function getTodayDate() {
 	var date = new Date();
 	var day = date.getDate();

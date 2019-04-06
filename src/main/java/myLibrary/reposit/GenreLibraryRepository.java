@@ -3,12 +3,12 @@ package myLibrary.reposit;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.reposit.annot.RepGenre;
 import myLibrary.reposit.model.Genre;
+import myLibrary.reposit.qualifier.RepGenre;
 
 @ApplicationScoped
 @RepGenre
-public class GenreHashMapRepository extends AbstractHashMapLibraryRepository<Genre> {
+public class GenreLibraryRepository extends AbstractLibraryRepository<Genre> {
 
 	@PostConstruct
 	private void initGenreRep() {

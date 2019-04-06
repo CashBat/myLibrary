@@ -1,4 +1,4 @@
-package myLibrary.reposit.annot;
+package myLibrary.service.report.qualifier;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,6 +10,4 @@ import javax.inject.Qualifier;
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,ElementType.TYPE})
-public @interface RepReport {
-
-}
+public @interface BuilderDeptInfo{}

@@ -3,22 +3,22 @@ package myLibrary.reposit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import myLibrary.reposit.annot.RepBook;
-import myLibrary.reposit.annot.RepGenre;
 import myLibrary.reposit.model.Book;
 import myLibrary.reposit.model.Genre;
+import myLibrary.reposit.qualifier.RepBook;
+import myLibrary.reposit.qualifier.RepGenre;
 
 @ApplicationScoped
 @RepBook
-public class BookHashMapRepository extends AbstractHashMapLibraryRepository<Book> {
+public class BookLibraryRepository extends AbstractLibraryRepository<Book> {
 
 	LibraryRepository<Genre> repositoryGenre;
 
-	public BookHashMapRepository() {
+	public BookLibraryRepository() {
 	}
 
 	@Inject
-	public BookHashMapRepository(@RepGenre LibraryRepository<Genre> repositoryGenre) {
+	public BookLibraryRepository(@RepGenre LibraryRepository<Genre> repositoryGenre) {
 		this.repositoryGenre = repositoryGenre;
 		initBookRep();
 	}

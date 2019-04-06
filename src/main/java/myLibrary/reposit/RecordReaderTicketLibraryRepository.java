@@ -2,12 +2,12 @@ package myLibrary.reposit;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import myLibrary.reposit.annot.RepRecordReaderTicket;
 import myLibrary.reposit.model.RecordReaderTicket;
+import myLibrary.reposit.qualifier.RepRecordReaderTicket;
 
 @ApplicationScoped
 @RepRecordReaderTicket
-public class RecordReaderTicketHashMapRepository extends AbstractHashMapLibraryRepository<RecordReaderTicket> {
+public class RecordReaderTicketLibraryRepository extends AbstractLibraryRepository<RecordReaderTicket> {
 
 	/*
 	@Inject
