@@ -14,7 +14,7 @@ public class JasperPrintReportLibraryRepository extends AbstractLibraryRepositor
 	private void initGenreRep() {
 		
 		add(createReport("Задолженность","Учет должников, персональные данные, списки книг","debtInfo"));	
-		add(createReport("Архив","Полный реестр книг, числящихся в библиотеке (в том числе и «на руках»)","debtInfo"));	
+		add(createReport("Архив","Полный реестр книг, числящихся в библиотеке (в том числе и «на руках»)","reating"));	
 		add(createReport("Топ","Книги которые брали больше двух раз за текущий год","dafdsf"));
 		add(createReport("Фейк1","Фейковый отчет номер 1",null));
 		add(createReport("Фейк2","Фейковый отчет номер 2",""));

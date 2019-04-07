@@ -26,7 +26,8 @@ $(document).ready(function() {
 			addDialog.find(".modal-title").text("Новая запись");
 			//addDialog.find("#reaader-ticket").text(reaaderTicketId);
 			addDialog.find('input[name=rent-day-input]').val(defaultRentDay);
-			addDialog.find('input[name=date-issue-input]').attr("value", getTodayDate());
+		//	addDialog.find('input[name=date-issue-input]').attr("value", getTodayDate());
+			addDialog.find('input[name=date-issue-input]').val(new Date().toISOString().split('T')[0]);
 			$("#return-date-row").addClass('not-visible-field');
 			$("#date-issue-row").removeClass('not-visible-field');	
 			$("#book-selection-row").removeClass('not-visible-field');	
@@ -99,7 +100,7 @@ $(document).ready(function() {
 	
 	$(document).on("click", ".edit-record", function() {
 		var selectedTR=$(this).closest("tr")
-		rentalInfo.idRecordRiderTicket = selectedTR.find('.record-rent-id').Dtext();
+		rentalInfo.idRecordRiderTicket = selectedTR.find('.record-rent-id').text();
 		rentalInfo.statusRental = selectedTR.find('.record-rent-status-rental').first().attr("data-id");
 		var bookId= selectedTR.find('.record-rent-book-id').first().text();
 		var dateIssue = selectedTR.find('.record-rent-date-issue').first().text();
@@ -117,8 +118,8 @@ $(document).ready(function() {
 	
 		addDialog.find('input[name=rent-day-input]').val(quantityRentDay);
 
-		addDialog.find('input[name=date-issue-input]').attr("value", dateIssue);
-		addDialog.find('input[name=return-date-input]').attr("value", returnDate);
+		addDialog.find('input[name=date-issue-input]').val(dateIssue);
+		addDialog.find('input[name=return-date-input]').val(returnDate);
 		addDialog.find('input[name=id-book-input]').prop('disabled',true);
 		addDialog.find('button[name=find-book-archive-button]').prop('disabled', true);
 	//	addDialog.find("#book-display-info-form").removeClass('not-visible-field');

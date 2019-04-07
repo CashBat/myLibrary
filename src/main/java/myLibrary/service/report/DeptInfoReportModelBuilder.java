@@ -36,6 +36,7 @@ public class DeptInfoReportModelBuilder implements ReportModelBuilder {
 		Book book;
 		Reader reader;
 		BookDebtTableReportModel bookDebt;
+		int numb=0;
 		for (ReaderTicket readerTicket : readerTicketService.getReaderTickets()) {
 			List<RecordReaderTicket> debtBookRecords = readerTicketService.getDebtBookRecords(readerTicket);
 			for (RecordReaderTicket record : debtBookRecords) {
@@ -52,7 +53,7 @@ public class DeptInfoReportModelBuilder implements ReportModelBuilder {
 				}
 
 				bookDebt = new BookDebtTableReportModel();
-				bookDebt.setNumber(bookDebtReportModel.getDataTable().size() + 1);
+				bookDebt.setNumber(numb ++);
 				bookDebt.setIdBook(book.getId());
 				bookDebt.setNameBook(book.getName());
 				bookDebt.setDateIssue(DateFormatUtils.format(record.getDateIssue(), "yyyy-MM-dd"));

@@ -265,6 +265,11 @@ public class DefaultReaderTicketService implements ReaderTicketService {
 		return repReaderTicket.values();
 	}
 
+	@Override
+	public Collection<RecordReaderTicket> getRecordReaderTickets() {
+		return repRecordReaderTicket.values();
+	}
+
 
 
 

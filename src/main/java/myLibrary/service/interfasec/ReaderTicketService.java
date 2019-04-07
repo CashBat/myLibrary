@@ -24,5 +24,7 @@ public interface ReaderTicketService {
 	List<RecordReaderTicket> getDebtBookRecords(ReaderTicket readerTicket);
 	
 	Collection<ReaderTicket> getReaderTickets();
+	
+	Collection<RecordReaderTicket> getRecordReaderTickets();
 
 }

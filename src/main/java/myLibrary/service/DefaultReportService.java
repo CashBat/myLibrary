@@ -10,6 +10,7 @@ import myLibrary.reposit.LibraryRepository;
 import myLibrary.reposit.model.JasperPrintReport;
 import myLibrary.reposit.qualifier.RepReport;
 import myLibrary.service.interfasec.ReportService;
+import myLibrary.service.report.ManagerReportModelBuilder;
 import myLibrary.service.report.ReportModelBuilder;
 import myLibrary.service.report.qualifier.BuilderDeptInfo;
 
@@ -24,21 +25,19 @@ public class DefaultReportService implements ReportService {
 	JasperReportGenerator jasperReportGenerator;
 
 	@Inject
-	@BuilderDeptInfo
-	ReportModelBuilder reportModelBuilder;
+	ManagerReportModelBuilder managerRMB;
 
 	@Override
 	public JasperPrintReport getJasperPrintReport(int idReport) {
-		JasperPrintReport jasperPrintReport = reportRep.getEntity(idReport);
+		JasperPrintReport jasperPrintReport = reportRep.getEntity(idReport);		
+		ReportModelBuilder reportModelBuilder = managerRMB.getReportModelBuilder(idReport);
 		jasperReportGenerator.setParam(reportModelBuilder.build(), jasperPrintReport.getReportName());
-
 		try {
 			jasperReportGenerator.start();
 			jasperPrintReport.setJasperPrint(jasperReportGenerator.getJasperPrint());
 		} catch (JasperGeneratorException e) {
 			throw e;
 		}
-
 		return jasperPrintReport;
 	}
 

@@ -43,8 +43,8 @@ public class ReaderTicketLibraryRepository extends AbstractLibraryRepository<Rea
 		ReaderTicket readerTicket = new ReaderTicket();
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(1));
-		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(1), "25.12.2018", 12, "30.12.2018"));
-		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(3), "20.12.2018", 12, "24.12.2018"));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(1), "25.12.2019", 12, "30.12.2019"));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(3), "20.12.2019", 12, "24.12.2019"));
 		add(readerTicket);
 
 		readerTicket = new ReaderTicket();
@@ -55,13 +55,14 @@ public class ReaderTicketLibraryRepository extends AbstractLibraryRepository<Rea
 		readerTicket = new ReaderTicket();
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(3));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(1), "06.12.2019", 12, "10.12.2019"));
 		add(readerTicket);
 
 		readerTicket = new ReaderTicket();
 		readerTicket.setId(getID());
 		readerTicket.setReader(repReader.getEntity(4));
 
-		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(2), "20.12.2018", 12, null));
+		readerTicket.addRecord(createDefaultRecord(repBook.getEntity(2), "20.12.2019", 12, null));
 
 		add(readerTicket);
 
