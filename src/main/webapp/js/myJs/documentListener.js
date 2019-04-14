@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 	$("#filter-table-book-by-name").keyup(function() {
 		filterBookTableForName();
-	})
+	});
 	$('#find-book-archive').click(function() {
 		$('#list-storage-list').click();
 
