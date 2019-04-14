@@ -381,7 +381,7 @@ function loadRentalInfoBooks(ReadTicketId) {
 
 														+ "			<svg class='remove-record' width='37' height='37'"
 														+ "				xmlns='http://www.w3.org/2000/svg'>"
-
+														+ "<title>Удалить запись</title>"
 														+ "<path"
 														+ "								d='m18,1c-9.4,0 -17,7.6 -17,17s7.6,17 17,17s17,-7.6 17,-17s-7.6,-17 -17,-17zm0,32.4c-8.5,0 -15.4,-6.9 -15.4,-15.4s6.9,-15.4 15.4,-15.4s15.4,6.9 15.4,15.4s-6.9,15.4 -15.4,15.4z' />"
 														+ "<path"
@@ -394,7 +394,7 @@ function loadRentalInfoBooks(ReadTicketId) {
 
 														+ "<svg class='edit-record' width='37' height='37'"
 														+ "	xmlns='http://www.w3.org/2000/svg'>"
-
+														+ "<title>Редактировать запись</title>"
 														+ "	<path"
 														+ "	d='m19,1c-9.4,0 -17,7.6 -17,17s7.6,17 17,17s17,-7.6 17,-17s-7.6,-17 -17,-17zm0,32.4c-8.5,0 -15.4,-6.9 -15.4,-15.4s6.9,-15.4 15.4,-15.4s15.4,6.9 15.4,15.4s-6.9,15.4 -15.4,15.4z'"
 														+ "	id='svg_2' />"

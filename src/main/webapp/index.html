@@ -132,28 +132,33 @@
 						<div class="tab-pane fade" id="list-rent" role="tabpanel"
 							aria-labelledby="list-rent-list">
 							<div class="row" id="info-rider-row">
-								<div class="col">
-									<div class="row">
-										<div class="col-8">
-											<input name="reader-ticket-input" type="text"
+								<div class="col-7">
+								
+									<form class="form-inline">
+										<div class="form-group">
+										  <label class="control-label col" for="rider-ricket">Номер читательского билета:</label>
+																			  
+										  <input name="reader-ticket-input" type="text" id="rider-ricket"
 												class="form-control"
-												placeholder="Номер читательского билета.."
+												placeholder="1-4.."
 												aria-label="reader-ticket-inpu"
-												aria-describedby="basic-addon2">
-										</div>
-										<div class="col-2">
+												aria-describedby="basic-addon2">										  			
+																		 
+										  <div class="col">
 											<button class="btn btn-lib-style" type="button"
 												id="search-rider-ticket">Найти</button>
+											</div>  
 										</div>
-									</div>
-									<div class="row">
-										<div class="col">
+										<div class="form-group">        
+										  <div class="col">
 											<button id="add-record" class="btn btn-lib-style float-left"
 												data-toggle="modal" type="button">Новая запись</button>
+										  </div>
 										</div>
-									</div>
+									</form>
+
 								</div>
-								<div class="col">
+								<div class="col">								
 									<table class="table ">
 										<tbody>
 											<tr class="d-flex">
@@ -165,9 +170,10 @@
 												<td class="col-7" id="telRider">...</td>
 											</tr>
 										</tbody>
-									</table>
+									</table>				
 								</div>
 							</div>
+							<div class="row">
 							<div class="col " id="rent-tablr-col">
 
 								<table class="table table-hover">
@@ -217,6 +223,7 @@
 										</tr>
 									</tbody>
 								</table>
+							</div>
 							</div>
 						</div>
 
