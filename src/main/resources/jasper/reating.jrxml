@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2019-04-05T15:10:36 -->
+<!-- 2019-04-20T19:45:45 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StatementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e28a0c7-4fb5-45e4-a84d-326dbf9f43fd">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -57,7 +57,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="18" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Учет должников, персональные данные, списки книг]]></text>
+				<text><![CDATA[Рейтинг книг за текущий год]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="0" y="15" width="110" height="15" uuid="24eb8ce5-cccb-43e1-9d84-fe893a784283">
@@ -96,7 +96,7 @@
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="50" height="46" uuid="09d46345-a6e9-4a59-9fab-244714a64369"/>
+				<reportElement x="112" y="0" width="50" height="46" uuid="09d46345-a6e9-4a59-9fab-244714a64369"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -109,7 +109,7 @@
 				<textFieldExpression><![CDATA["N п/п"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="0" width="60" height="46" uuid="7152c198-89b7-4997-b9a6-c87f522d8924"/>
+				<reportElement x="162" y="0" width="60" height="46" uuid="7152c198-89b7-4997-b9a6-c87f522d8924"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -119,10 +119,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Дата"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Код книги"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="0" width="170" height="46" uuid="4b4a20f1-f972-437d-b1c0-adb079974def"/>
+				<reportElement x="222" y="0" width="170" height="46" uuid="4b4a20f1-f972-437d-b1c0-adb079974def"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -132,10 +132,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Поставщик, назначение"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Название книги"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="0" width="70" height="46" uuid="f1fc3e27-93d6-4da8-a006-3ba4e85c2d1e"/>
+				<reportElement x="392" y="0" width="70" height="46" uuid="f1fc3e27-93d6-4da8-a006-3ba4e85c2d1e"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -145,59 +145,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Вид финансирования"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="350" y="0" width="70" height="46" uuid="cbf0f12a-a978-4071-be7b-40bd4146ff8d"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["N счет-фактуры"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="420" y="0" width="70" height="46" uuid="4d6c3448-435c-47fb-a745-e48e7ed92667">
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Стоимость оптовая, в руб."]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="490" y="0" width="64" height="46" uuid="300088b4-ff09-4fde-820f-cd9bdc55c4af">
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Стоимость оптовая, в руб."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Рейтинг"]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="37" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="1" width="554" height="36" uuid="9eb38f0f-a595-488d-994b-7248d45c7c1a">
+				<reportElement x="112" y="1" width="350" height="36" uuid="9eb38f0f-a595-488d-994b-7248d45c7c1a">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -214,8 +169,8 @@
 								<rightPen lineWidth="1.0"/>
 							</box>
 							<textField>
-								<reportElement x="1" y="0" width="49" height="30" uuid="96b5b56b-0e77-4835-92d0-10134a57f49a"/>
-								<textElement verticalAlignment="Middle">
+								<reportElement x="0" y="0" width="50" height="30" uuid="96b5b56b-0e77-4835-92d0-10134a57f49a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
@@ -231,8 +186,8 @@
 								<rightPen lineWidth="1.0"/>
 							</box>
 							<textField>
-								<reportElement x="1" y="0" width="59" height="30" uuid="0779fa8f-be15-4f00-a420-b62e0335b33b"/>
-								<textElement verticalAlignment="Middle">
+								<reportElement x="0" y="0" width="60" height="30" uuid="0779fa8f-be15-4f00-a420-b62e0335b33b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{idBook}]]></textFieldExpression>
@@ -248,8 +203,8 @@
 								<rightPen lineWidth="1.0"/>
 							</box>
 							<textField>
-								<reportElement x="1" y="0" width="169" height="30" uuid="6f9f87e0-7c9d-4526-96d5-49f2ca7a8bed"/>
-								<textElement verticalAlignment="Middle">
+								<reportElement x="0" y="0" width="170" height="30" uuid="6f9f87e0-7c9d-4526-96d5-49f2ca7a8bed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nameBook}]]></textFieldExpression>
@@ -266,7 +221,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="69" height="30" uuid="4a479621-99df-4dd9-b753-a3e207b38de3"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{rating}]]></textFieldExpression>

@@ -35,8 +35,10 @@
 			<div class="row">
 				<div class="col-lg-auto">
 					<div class="list-group" id="list-tab" role="tablist">	
-						 <a
-							class="list-group-item list-group-item-action active"
+						<a class="list-group-item list-group-item-action active"
+							id="list-auto-list" data-toggle="list" href="#list-auto"
+							role="tab" aria-controls="auto">Авторизация</a> <a
+							class="list-group-item list-group-item-action"
 							id="list-storage-list" data-toggle="list" href="#list-storage"
 							role="tab" aria-controls="storage">Хранилище</a> <a
 							class="list-group-item list-group-item-action"
@@ -49,7 +51,22 @@
 				</div>
 				<div class="col">
 					<div class="tab-content" id="nav-tabContent">
-						<div class="tab-pane fade show active" id="list-storage" role="tabpanel"
+						<div class="tab-pane fade show active" id="list-auto" role="tabpanel"
+							aria-labelledby="list-auto-list">
+							<div class="row">
+								<div class="col">
+									<p id="welcome">Добро пожаловать в библиотеку!!</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col ">
+      <label class="switch switch-left-right">
+        <input id="auto-switch" class="switch-input" type="checkbox">
+        <span  class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>
+    </div>
+	</div>
+						</div>
+						<div class="tab-pane fade" id="list-storage" role="tabpanel"
 							aria-labelledby="list-storage-list">
 							<div class="row">
 								<div class="col">

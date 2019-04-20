@@ -132,7 +132,7 @@ public class RatingInfoReportModelBuilder implements ReportModelBuilder {
 				
 			
 				if(!isUpRating(book,bookRatingReportModel)) {
-					bookRatingReportModel.getDataTable().add(createRating(numb++,book));
+					bookRatingReportModel.getDataTable().add(createRating(++numb,book));
 				}
 
 			}

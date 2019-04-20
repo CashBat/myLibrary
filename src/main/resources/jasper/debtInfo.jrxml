@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2019-04-05T15:10:36 -->
+<!-- 2019-04-20T19:15:19 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StatementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e28a0c7-4fb5-45e4-a84d-326dbf9f43fd">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -56,7 +56,7 @@
 	<title>
 		<band height="111" splitType="Stretch">
 			<staticText>
-				<reportElement x="113" y="63" width="347" height="37" uuid="464a25a9-d25a-4c22-89f9-59c195680441"/>
+				<reportElement x="83" y="63" width="397" height="37" uuid="464a25a9-d25a-4c22-89f9-59c195680441"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="18" isBold="false"/>
 				</textElement>
@@ -122,7 +122,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Дата"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Код книги"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="110" y="0" width="170" height="46" uuid="4b4a20f1-f972-437d-b1c0-adb079974def"/>
@@ -135,7 +135,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Поставщик, назначение"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Название книги"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="0" width="70" height="46" uuid="f1fc3e27-93d6-4da8-a006-3ba4e85c2d1e"/>
@@ -148,7 +148,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Вид финансирования"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Дата выдачи"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="0" width="70" height="46" uuid="cbf0f12a-a978-4071-be7b-40bd4146ff8d"/>
@@ -161,7 +161,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["N счет-фактуры"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Просроченные дни"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="420" y="0" width="70" height="46" uuid="4d6c3448-435c-47fb-a745-e48e7ed92667">
@@ -177,7 +177,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Стоимость оптовая, в руб."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ФИО должника."]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="490" y="0" width="64" height="46" uuid="300088b4-ff09-4fde-820f-cd9bdc55c4af">
@@ -193,7 +193,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Стоимость оптовая, в руб."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Телефон должника."]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
@@ -218,7 +218,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="49" height="30" uuid="96b5b56b-0e77-4835-92d0-10134a57f49a"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
@@ -235,7 +235,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="59" height="30" uuid="0779fa8f-be15-4f00-a420-b62e0335b33b"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{idBook}]]></textFieldExpression>
@@ -252,7 +252,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="169" height="30" uuid="6f9f87e0-7c9d-4526-96d5-49f2ca7a8bed"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nameBook}]]></textFieldExpression>
@@ -269,7 +269,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="69" height="30" uuid="4a479621-99df-4dd9-b753-a3e207b38de3"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{dateIssue}]]></textFieldExpression>
@@ -286,7 +286,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="69" height="30" uuid="9ec12765-1281-4fc2-bb94-29fbfe4b488e"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{dayOverdue}]]></textFieldExpression>
@@ -303,7 +303,7 @@
 							</box>
 							<textField>
 								<reportElement x="1" y="0" width="69" height="30" uuid="8063a224-14dd-4b80-81df-e69da5775674"/>
-								<textElement textAlignment="Right" verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{debtorFIO}]]></textFieldExpression>
@@ -320,7 +320,7 @@
 							</box>
 							<textField>
 								<reportElement x="0" y="0" width="64" height="30" uuid="afd4fa34-fb62-45f2-a476-1fcc7e010440"/>
-								<textElement textAlignment="Right" verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial Narrow"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{debtorTel}]]></textFieldExpression>

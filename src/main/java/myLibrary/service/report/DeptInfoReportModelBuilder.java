@@ -53,7 +53,7 @@ public class DeptInfoReportModelBuilder implements ReportModelBuilder {
 				}
 
 				bookDebt = new BookDebtTableReportModel();
-				bookDebt.setNumber(numb ++);
+				bookDebt.setNumber(++numb);
 				bookDebt.setIdBook(book.getId());
 				bookDebt.setNameBook(book.getName());
 				bookDebt.setDateIssue(DateFormatUtils.format(record.getDateIssue(), "yyyy-MM-dd"));

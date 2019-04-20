@@ -13,8 +13,14 @@ $(document).ready(function() {
 		}
 	
 	
-	
-	
+	$('#auto-switch').click(function() {		
+		if ($(this).is(":checked"))
+{	
+$(".list-group-item").addClass('not-visible-field');
+} else{
+	$(".list-group-item").removeClass('not-visible-field');
+}});
+		
 	$(document).on("click", ".image-report", function() {
 		loadPdf($(this).attr("data-id"));	
 	});
@@ -83,6 +89,8 @@ $(document).ready(function() {
 		loadBooks(tableBook);
 
 	});
+	
+
 
 	$("#search-rider-ticket").click(function() {
 		cleanRentTabElement();
@@ -134,7 +142,7 @@ $(document).ready(function() {
 
 	//$('#list-storage-list').click();
 	
-	
+	$("#list-storage-list").click();
 	loadReportOptions();
 });
 
